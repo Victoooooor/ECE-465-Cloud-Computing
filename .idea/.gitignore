@@ -2,7 +2,11 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
+
 /../../../../../../../../../:\Users\allis\Documents\School\ECE465_CloudComputing\git\ECE-465-Cloud-Computing\.idea/dataSources/
+
+/dataSources/
+
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
