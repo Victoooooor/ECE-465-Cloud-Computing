@@ -19,7 +19,7 @@ public class multiThreadedSearch {
 
     ExecutorService pool;
 
-    public multiThreadedSearch(String homeDir, String searchWord, final int nThreads){
+    public multiThreadedSearch(String homeDir, String searchWord, final int nThreads) {
         this.homeDir = homeDir;
         this.searchWord = searchWord;
         this.nThreads = nThreads;
@@ -40,16 +40,16 @@ public class multiThreadedSearch {
         pool.awaitTermination(00, TimeUnit.SECONDS);
     }
 
-    public ConcurrentLinkedQueue<String> getResult(){
+    public ConcurrentLinkedQueue<String> getResult() {
         return result;
     }
 
     public static void main(String[] args) throws Exception {
-        Scanner sc= new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Enter a starting directory: ");
-        String homeDir= sc.nextLine();
+        String homeDir = sc.nextLine();
         System.out.print("Enter search keyword: ");
-        String searchWord= sc.nextLine();
+        String searchWord = sc.nextLine();
         System.out.print("Enter number of threads: ");
         final int nTheards = sc.nextInt();
 
@@ -61,10 +61,10 @@ public class multiThreadedSearch {
         LocalTime end = LocalTime.now();
 
         ConcurrentLinkedQueue<String> result = search.getResult();
-        for(String s: result){
+        for (String s : result) {
             System.out.println(s);
         }
 
-        System.out.println("Run time: " + Duration.between(start,end).toMillis() + " ms");
+        System.out.println("Run time: " + Duration.between(start, end).toMillis() + " ms");
     }
 }

@@ -18,6 +18,7 @@ public class singleThreadedSearch {
         Search search = new Search(homeDir, searchWord, 1);
 
         LocalTime start = LocalTime.now();
+
         search.run();
 
         LocalTime end = LocalTime.now();
@@ -25,7 +26,6 @@ public class singleThreadedSearch {
         for(String s: search.getResult()){
             System.out.println(s);
         }
-
         System.out.println("Run time: " + Duration.between(start,end).toSeconds() + " s");
     }
 }

@@ -26,7 +26,7 @@ public class Search implements Runnable {
         return false;
     }
 
-    public Search(String homeDir, String searchWord, final int nThreads){
+    public Search(String homeDir, String searchWord, final int nThreads) {
         queue = new ConcurrentLinkedQueue<File>();
         result = new ConcurrentLinkedQueue<String>();
         this.homeDir = homeDir;
@@ -34,6 +34,7 @@ public class Search implements Runnable {
         this.nThreads = nThreads;
         homeDir = new File(homeDir).getAbsolutePath();
     }
+
     public Search(ConcurrentLinkedQueue<File> queue, ConcurrentLinkedQueue<String> result, String searchWord, final int nThreads) {
         this.queue = queue;
         this.result = result;
@@ -50,7 +51,7 @@ public class Search implements Runnable {
     public void run() {
         System.out.println("Starting search from: " + homeDir);
         //single thread
-        if(nThreads == 1){
+        if (nThreads == 1) {
             File home = new File(homeDir);
             if (!home.isDirectory()) {
                 return;
@@ -62,14 +63,14 @@ public class Search implements Runnable {
                     result.add(current.getAbsolutePath());
                 if (current.isDirectory() || isRoot(current)) {
                     File childern[] = current.listFiles();
-                    if(childern != null)
+                    if (childern != null)
                         for (File c : childern)
                             queue.add(c);
                 }
             }
         }
         //multi thread
-        else if(nThreads > 1){
+        else if (nThreads > 1) {
             try {
                 while (queue.isEmpty() == false) {
                     File current;
@@ -96,5 +97,4 @@ public class Search implements Runnable {
         }
 
     }
-
 }
