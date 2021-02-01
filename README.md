@@ -8,3 +8,5 @@ Then run script.sh under "./testfile" which randomly generate small files for te
 
 Run ece465.threaded_store_test.java and ece465.single_store_test.java,
     the speed difference should be quite noticable
+Run ece465.search_test.java in with 1 thread and 50 threads,
+    the speed difference should be quite noticable
