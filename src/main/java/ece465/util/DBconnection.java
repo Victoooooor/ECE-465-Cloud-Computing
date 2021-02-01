@@ -7,14 +7,14 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class connection {
+public class DBconnection {
     Dotenv dotenv = Dotenv.load();
     private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
     private static final String USER = "user1";
     private final String PASS;
     private final String DB_URL;
     private static HikariDataSource DBCP;
-    public connection() {
+    public DBconnection() {
         Dotenv dotenv = Dotenv.load();
         PASS=dotenv.get("DB_PASS");
         DB_URL=dotenv.get("DB_URL");
