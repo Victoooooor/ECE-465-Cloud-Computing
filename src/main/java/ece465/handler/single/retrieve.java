@@ -37,7 +37,7 @@ public class retrieve {
                     pool.execute(new search(queue, result, searchWord, nThreads - 1));
                 }
                 System.out.println("Thread #" + (i + 1) + " has been started");
-                Thread.sleep(100);
+                //Thread.sleep(100);
             }
             pool.shutdown();
             pool.awaitTermination(0, TimeUnit.SECONDS);
