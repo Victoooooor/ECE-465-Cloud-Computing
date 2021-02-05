@@ -19,20 +19,13 @@ public class store_consumer implements Runnable{
     private FileInputStream inputStream;
     private BufferedInputStream BuffedIn;
     private String temp;
-    PreparedStatement stmt;
-    Connection conn;
+    private PreparedStatement stmt;
+    private Connection conn;
     private final int thrsh=3;
     private int count;
     public store_consumer(pipeline inpipe, DBconnection con_in){
         mypipe=inpipe;
         dbcp=con_in.getDataSource();
-        try {
-            conn=dbcp.getConnection();
-        } catch (SQLException throwables) {
-            conn=null;
-            System.err.println("Connection Init Error.");
-            throwables.printStackTrace();
-        }
         count=0;
     }
 
@@ -42,6 +35,7 @@ public class store_consumer implements Runnable{
             try {
                 inputStream = new FileInputStream(temp);
                 BuffedIn = new BufferedInputStream(inputStream);
+                conn=dbcp.getConnection();
                 while(true){
                     try{
                         stmt = conn.prepareStatement("INSERT INTO files (fname, stored) VALUES (?, ?);");
@@ -69,7 +63,8 @@ public class store_consumer implements Runnable{
                 try {
                     inputStream.close();
                     BuffedIn.close();
-                } catch (IOException e) {}
+                    conn.close();
+                } catch (IOException | SQLException e) {}
             }
 
         }

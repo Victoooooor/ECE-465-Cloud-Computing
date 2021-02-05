@@ -18,6 +18,8 @@ public class retrieve {
     ExecutorService pool;
 
     public void startSearch(String searchWord) throws Exception {
+        queue.clear();
+        result.clear();
         if(nThreads == 1){
             get g = new get(queue);
             this.queue = g.singleThreadRun(queue);
@@ -37,13 +39,6 @@ public class retrieve {
             pool.shutdown();
             pool.awaitTermination(0, TimeUnit.SECONDS);
 
-        }
-
-        System.out.println("RESULTS:    fid    filename");
-        synchronized (result) {
-            for (fileInfo f : result) {
-                System.out.println("            " + f.getFid() + "     " + f.getFilename());
-            }
         }
     }
 

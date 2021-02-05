@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BlockChain FileSystem" />
         <module name="BlockChain_FileSystem" />
+        <module name="ECE-465-Cloud-Computing" />
       </profile>
     </annotationProcessing>
   </component>
