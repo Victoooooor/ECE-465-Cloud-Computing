@@ -1,18 +1,15 @@
 package ece465.util;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
 
 public class search implements Runnable {
 
-    private ConcurrentLinkedQueue<String> queue;
-    private ConcurrentLinkedQueue<String> result;
+    private final ConcurrentLinkedQueue<fileInfo> queue;
+    private final ConcurrentLinkedQueue<fileInfo> result;
     private final String searchWord;
     private final int nThreads;
 
-    ExecutorService pool;
-
-    public search(ConcurrentLinkedQueue<String> queue, ConcurrentLinkedQueue<String> result, String searchWord, final int nThreads) {
+    public search(ConcurrentLinkedQueue<fileInfo> queue, ConcurrentLinkedQueue<fileInfo> result, String searchWord, final int nThreads) {
         this.queue = queue;
         //System.out.println(queue.isEmpty());
         this.result = result;
@@ -20,7 +17,7 @@ public class search implements Runnable {
         this.nThreads = nThreads;
     }
 
-    public ConcurrentLinkedQueue<String> getResult() {
+    public ConcurrentLinkedQueue<fileInfo> getResult() {
         return result;
     }
 
@@ -30,8 +27,9 @@ public class search implements Runnable {
         //single thread
         if (nThreads == 1) {
             while (!queue.isEmpty()) {
-                String current = queue.remove();
-                if (current.toLowerCase().contains(searchWord.toLowerCase()))
+                fileInfo current = queue.remove();
+                String currentFilename = current.getFilename();
+                if (currentFilename.toLowerCase().contains(searchWord.toLowerCase()))
                     result.add(current);
             }
         }
@@ -40,16 +38,16 @@ public class search implements Runnable {
             try {
                 synchronized (queue) {
                     while (!queue.isEmpty()) {
-                        String current;
+                        fileInfo current;
                         synchronized (queue) {
                             current = queue.remove();
-                            //System.out.println("current" + current);
                         }
-
-                        if (current.toLowerCase().contains(searchWord.toLowerCase()))
+                        String currentFilename = current.getFilename();
+                        if (currentFilename.toLowerCase().contains(searchWord.toLowerCase())) {
                             synchronized (result) {
                                 result.add(current);
                             }
+                        }
                     }
                 }
             } catch (Exception e) {

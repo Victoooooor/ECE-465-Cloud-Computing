@@ -7,22 +7,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import ece465.util.DBconnection;
+import ece465.util.fileInfo;
 import ece465.util.search;
 
 public class retrieve {
     DataSource dbcp;
-    private ConcurrentLinkedQueue<String> queue;
-    private ConcurrentLinkedQueue<String> result;
-    private String searchWord;
-    private int nThreads;
+    private ConcurrentLinkedQueue<fileInfo> queue;
+    private ConcurrentLinkedQueue<fileInfo> result;
+    private final int nThreads;
     ExecutorService pool;
 
-    public void startSearch(String searchWord, int nThreads) throws Exception {
-        this.queue = queue;
-        this.result = result;
-        this.searchWord = searchWord;
-        this.nThreads = nThreads;
-
+    public void startSearch(String searchWord) throws Exception {
         if(nThreads == 1){
             get g = new get(queue);
             this.queue = g.singleThreadRun(queue);
@@ -37,19 +32,24 @@ public class retrieve {
                     pool.execute(new search(queue, result, searchWord, nThreads - 1));
                 }
                 System.out.println("Thread #" + (i + 1) + " has been started");
-                //Thread.sleep(100);
+                Thread.sleep(5);
             }
             pool.shutdown();
             pool.awaitTermination(0, TimeUnit.SECONDS);
+
         }
-        for(String s : result){
-            System.out.println(s);
+
+        System.out.println("RESULTS:    fid    filename");
+        synchronized (result) {
+            for (fileInfo f : result) {
+                System.out.println("            " + f.getFid() + "     " + f.getFilename());
+            }
         }
-        //System.out.println(result.isEmpty());
     }
 
-    public retrieve(DBconnection con_in, int nThreads){
-        dbcp=  DBconnection.getDataSource();
+    public retrieve(DBconnection com_in, int nThreads){
+        this.nThreads = nThreads;
+        dbcp = com_in.getDataSource();
         this.queue = new ConcurrentLinkedQueue<>();
         this.result = new ConcurrentLinkedQueue<>();
         pool = Executors.newFixedThreadPool(nThreads);
