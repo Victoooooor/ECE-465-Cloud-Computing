@@ -1,12 +1,12 @@
 package ece465.util;
 
 import javax.sql.DataSource;
-import io.github.cdimascio.dotenv.Dotenv;
+
 import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import ece465.dotenv.Dotenv;
 public class DBconnection {
     Dotenv dotenv = Dotenv.load();
     private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
