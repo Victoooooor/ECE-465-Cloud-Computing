@@ -55,4 +55,8 @@ public class retrieve {
         pool = Executors.newFixedThreadPool(nThreads);
     }
 
+    public ConcurrentLinkedQueue<fileInfo> getResult(){
+        return result;
+    }
+
 }
