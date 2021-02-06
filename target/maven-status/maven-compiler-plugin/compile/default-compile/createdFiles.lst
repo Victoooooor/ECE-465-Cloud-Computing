@@ -10,7 +10,8 @@ ece465\util\search.class
 ece465\util\DBconnection.class
 ece465\handler\multi\pipeline.class
 ece465\handler\multi\fetch_multi.class
+ece465\handler\single\hash.class
 ece465\handler\single\fetch.class
+ece465\threaded_store_hash_test.class
 ece465\handler\single\retrieve.class
-ece465\threaded_store_test.class
 ece465\single_store_test.class

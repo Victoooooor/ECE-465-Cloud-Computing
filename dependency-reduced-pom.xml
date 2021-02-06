@@ -88,7 +88,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>ece465.fetch_test</mainClass>
+                  <mainClass>ece465.threaded_store_hash_test</mainClass>
                 </transformer>
               </transformers>
             </configuration>
