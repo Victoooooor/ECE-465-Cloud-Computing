@@ -11,6 +11,14 @@
         <module name="ECE-465-Cloud-Computing" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ECE-465-Cloud-Computing" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BlockChain_FileSystem" options="-Xlint" />
+    </option>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

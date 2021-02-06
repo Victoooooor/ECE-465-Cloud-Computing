@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS blocks (
     bid INT                     NOT NULL AUTO_INCREMENT,
     prev_hash VARCHAR(64)       DEFAULT NULL,
     curr_hash VARCHAR(64)       DEFAULT NULL,
-    timest BIGINT               NOT NULL,
+    timest BIGINT               DEFAULT NULL,
     nonce INT,
-    fid INT,
+    fid INT                     DEFAULT NULL,
     FOREIGN KEY(fid) REFERENCES files(fid) ON DELETE CASCADE,
     PRIMARY KEY(bid)
 );
