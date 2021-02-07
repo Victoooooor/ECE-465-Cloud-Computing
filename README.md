@@ -1,12 +1,21 @@
 # ECE-465-Cloud-Computing
 Cooper Union ECE-465 Spring 2021
 
-To run Threade File Storage:
-    run a.sql and b.sql under "./sql script" folder for mariadb to setup database and user w/ privileges
-
-Then run script.sh under "./testfile" which randomly generate small files for testing
-
-Run ece465.threaded_store_hash_test.java and ece465.single_store_test.java,
-    the speed difference should be quite noticable
-Run ece465.search_test.java in with 1 thread and 50 threads,
-    the speed difference should be quite noticable
+Pre-requsite:
+    - MariaDB (version 10.5 or newer)
+    - Maven
+    
+Database setup:
+    Make sure you cd into the project folder
+    
+    To setup the test databse, run
+        > mysql -u root -p < sql_script\a.sql
+    To setup user with privileges, run
+        > mysql -u root -p < sql_script\b.sql
+        
+Compilation
+    We use Maven to compile our project:
+        > mvn clean package
+    this should download all the dependencies needed and pack everything in a jar file
+    
+    
