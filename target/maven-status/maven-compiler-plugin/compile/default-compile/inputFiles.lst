@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\allis\Documents\School\ECE465_CloudComputing\hw1b\ECE-465-Cloud-Computing\src\main\java\ece465\search_test.java
 C:\Users\allis\Documents\School\ECE465_CloudComputing\hw1b\ECE-465-Cloud-Computing\src\main\java\ece465\handler\single\retrieve.java
 C:\Users\allis\Documents\School\ECE465_CloudComputing\hw1b\ECE-465-Cloud-Computing\src\main\java\ece465\handler\single\get.java
@@ -15,3 +16,17 @@ C:\Users\allis\Documents\School\ECE465_CloudComputing\hw1b\ECE-465-Cloud-Computi
 C:\Users\allis\Documents\School\ECE465_CloudComputing\hw1b\ECE-465-Cloud-Computing\src\main\java\ece465\handler\multi\store_consumer.java
 C:\Users\allis\Documents\School\ECE465_CloudComputing\hw1b\ECE-465-Cloud-Computing\src\main\java\ece465\handler\single\hash.java
 C:\Users\allis\Documents\School\ECE465_CloudComputing\hw1b\ECE-465-Cloud-Computing\src\main\java\ece465\util\fileInfo.java
+=======
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\handler\multi\threaded_store.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\search_test.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\util\search.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\handler\multi\store_producer.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\single_store_test.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\threaded_store_test.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\handler\single\get.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\handler\multi\pipeline.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\handler\single\store.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\util\DBconnection.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\handler\multi\store_consumer.java
+C:\Users\allis\Documents\School\ECE465_CloudComputing\playground\ECE-465-Cloud-Computing\src\main\java\ece465\handler\single\retrieve.java
+>>>>>>> 620f6b80b9a9a7cb143cb52d3c79ceaa7866a866

@@ -5,16 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae31dbac-7ed3-4df5-901b-1809ad947d99" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assembly/dist.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assembly/filter.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/fetch_test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/handler/multi/fetch_multi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/handler/multi/pipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ece465/handler/multi/pipeline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/handler/multi/store_consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ece465/handler/multi/store_consumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/handler/single/fetch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/handler/single/get.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ece465/handler/single/get.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/handler/single/hash.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/handler/single/retrieve.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ece465/handler/single/retrieve.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/search_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ece465/search_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/single_store_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ece465/single_store_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/threaded_store_hash_test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/util/fileInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ece465/util/search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ece465/util/search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" />
+>>>>>>> 620f6b80b9a9a7cb143cb52d3c79ceaa7866a866
       <change beforePath="$PROJECT_DIR$/target/archive-tmp/AUTHORS.md.1527632523.filtered" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-tmp/AUTHORS.md.616328148.filtered" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-tmp/LICENSE.1002967540.filtered" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-tmp/LICENSE.1115763427.filtered" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-tmp/README.md.120230441.filtered" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-tmp/README.md.1233899910.filtered" beforeDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testfile/script.sh" beforeDir="false" afterPath="$PROJECT_DIR$/testfile/script.sh" afterDir="false" />
+>>>>>>> 620f6b80b9a9a7cb143cb52d3c79ceaa7866a866
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +63,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1o3iomQy7dmIVVBaOCqC02oeQYn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -113,6 +149,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+=======
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+>>>>>>> 620f6b80b9a9a7cb143cb52d3c79ceaa7866a866
     <recent_temporary>
       <list>
         <item itemvalue="Application.threaded_store_hash_test" />
@@ -135,7 +185,12 @@
       <workItem from="1612554588775" duration="1363000" />
       <workItem from="1612556010981" duration="15300000" />
       <workItem from="1612572792073" duration="3544000" />
+<<<<<<< HEAD
       <workItem from="1612724219534" duration="22000" />
+=======
+      <workItem from="1612732740232" duration="235000" />
+      <workItem from="1612733058401" duration="2701000" />
+>>>>>>> 620f6b80b9a9a7cb143cb52d3c79ceaa7866a866
     </task>
     <servers />
   </component>

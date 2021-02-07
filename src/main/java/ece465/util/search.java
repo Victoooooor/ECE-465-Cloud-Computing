@@ -1,65 +1,61 @@
 package ece465.util;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import org.apache.log4j.Logger;
+import java.util.concurrent.ExecutorService;
 
 public class search implements Runnable {
 
-    Logger LOG = Logger.getLogger(search.class);
-
-    private final ConcurrentLinkedQueue<fileInfo> queue;
-    private final ConcurrentLinkedQueue<fileInfo> result;
+    private ConcurrentLinkedQueue<String> queue;
+    private ConcurrentLinkedQueue<String> result;
     private final String searchWord;
     private final int nThreads;
 
-    public search(ConcurrentLinkedQueue<fileInfo> queue, ConcurrentLinkedQueue<fileInfo> result, String searchWord, final int nThreads) {
-        LOG.debug("search CONSTRUCTOR");
+    ExecutorService pool;
+
+    public search(ConcurrentLinkedQueue<String> queue, ConcurrentLinkedQueue<String> result, String searchWord, final int nThreads) {
         this.queue = queue;
+        //System.out.println(queue.isEmpty());
         this.result = result;
         this.searchWord = searchWord;
         this.nThreads = nThreads;
-        LOG.debug("search CONSTRUCTOR - DONE");
     }
 
-    public ConcurrentLinkedQueue<fileInfo> getResult() {
+    public ConcurrentLinkedQueue<String> getResult() {
         return result;
     }
 
     @Override
     public void run() {
-        LOG.debug("search.run()");
+        //System.out.println("Starting search...");
         //single thread
         if (nThreads == 1) {
-            LOG.debug("search.run() - single-thread");
             while (!queue.isEmpty()) {
-                fileInfo current = queue.remove();
-                String currentFilename = current.getFilename();
-                if (currentFilename.toLowerCase().contains(searchWord.toLowerCase()))
+                String current = queue.remove();
+                if (current.toLowerCase().contains(searchWord.toLowerCase()))
                     result.add(current);
             }
         }
         //multi thread
         else if (nThreads > 1) {
-            LOG.debug("search.run() - multi-thread");
             try {
                 synchronized (queue) {
                     while (!queue.isEmpty()) {
-                        fileInfo current;
+                        String current;
                         synchronized (queue) {
                             current = queue.remove();
+                            //System.out.println("current" + current);
                         }
-                        String currentFilename = current.getFilename();
-                        if (currentFilename.toLowerCase().contains(searchWord.toLowerCase())) {
+
+                        if (current.toLowerCase().contains(searchWord.toLowerCase()))
                             synchronized (result) {
                                 result.add(current);
                             }
-                        }
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        LOG.debug("search.run - DONE");
+
     }
 }
