@@ -9,6 +9,7 @@ public class pipeline {
     public synchronized void queue(String inFile){
         while (len-pos>50) {
             try {
+                fpipe.forEach(path->System.out.println(path));
                 wait();
             } catch (InterruptedException e) {}
         }

@@ -1,11 +1,8 @@
 package ece465.util;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import org.apache.log4j.Logger;
 
 public class search implements Runnable {
-
-    Logger LOG = Logger.getLogger(search.class);
 
     private final ConcurrentLinkedQueue<fileInfo> queue;
     private final ConcurrentLinkedQueue<fileInfo> result;
@@ -13,12 +10,11 @@ public class search implements Runnable {
     private final int nThreads;
 
     public search(ConcurrentLinkedQueue<fileInfo> queue, ConcurrentLinkedQueue<fileInfo> result, String searchWord, final int nThreads) {
-        LOG.debug("search CONSTRUCTOR");
         this.queue = queue;
+        //System.out.println(queue.isEmpty());
         this.result = result;
         this.searchWord = searchWord;
         this.nThreads = nThreads;
-        LOG.debug("search CONSTRUCTOR - DONE");
     }
 
     public ConcurrentLinkedQueue<fileInfo> getResult() {
@@ -27,10 +23,9 @@ public class search implements Runnable {
 
     @Override
     public void run() {
-        LOG.debug("search.run()");
+        //System.out.println("Starting search...");
         //single thread
         if (nThreads == 1) {
-            LOG.debug("search.run() - single-thread");
             while (!queue.isEmpty()) {
                 fileInfo current = queue.remove();
                 String currentFilename = current.getFilename();
@@ -40,7 +35,6 @@ public class search implements Runnable {
         }
         //multi thread
         else if (nThreads > 1) {
-            LOG.debug("search.run() - multi-thread");
             try {
                 synchronized (queue) {
                     while (!queue.isEmpty()) {
@@ -60,6 +54,6 @@ public class search implements Runnable {
                 e.printStackTrace();
             }
         }
-        LOG.debug("search.run - DONE");
+
     }
 }
