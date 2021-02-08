@@ -1,6 +1,7 @@
 package ece465.handler.single;
 
 import ece465.util.DBconnection;
+import ece465.util.fileInfo;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import javax.sql.DataSource;
@@ -11,14 +12,14 @@ import java.sql.SQLException;
 
 public class get implements Runnable {
     DataSource dbcp;
-    public ConcurrentLinkedQueue<String> queue;
+    public final ConcurrentLinkedQueue<fileInfo> queue;
 
-    get(ConcurrentLinkedQueue<String> queue){
-        dbcp=  DBconnection.getDataSource();
+    get(ConcurrentLinkedQueue<fileInfo> queue){
+        this.dbcp = DBconnection.getDataSource();
         this.queue = queue;
     }
 
-    public ConcurrentLinkedQueue<String> singleThreadRun(ConcurrentLinkedQueue<String> queue){
+    public ConcurrentLinkedQueue<fileInfo> singleThreadRun(ConcurrentLinkedQueue<fileInfo> queue) {
         Connection conn = null;
         try {
             conn = dbcp.getConnection();
@@ -26,7 +27,7 @@ public class get implements Runnable {
             System.err.println("Connection Error.");
             err.printStackTrace();
         }
-        String query = "SELECT fname FROM files;";
+        String query = "SELECT fid, fname FROM files;";
         assert conn != null;
         PreparedStatement stmt = null;
         try {
@@ -35,9 +36,11 @@ public class get implements Runnable {
             throwable.printStackTrace();
         }
         try {
+            assert stmt != null;
             ResultSet data = stmt.executeQuery(query);
             while(data.next()){
-                    queue.add(data.getString("fname"));
+                fileInfo f = new fileInfo(data.getInt("fid"), data.getString("fname"));
+                queue.add(f);
             }
             //System.out.println(queue.isEmpty());
         } catch (SQLException throwable) {
@@ -56,7 +59,7 @@ public class get implements Runnable {
             System.err.println("Connection Error.");
             err.printStackTrace();
         }
-        String query = "SELECT fname FROM files;";
+        String query = "SELECT fid, fname FROM files;";
         assert conn != null;
         PreparedStatement stmt = null;
         try {
@@ -65,10 +68,12 @@ public class get implements Runnable {
             throwable.printStackTrace();
         }
         try {
+            assert stmt != null;
             ResultSet data = stmt.executeQuery(query);
             while(data.next()){
                 synchronized (queue) {
-                    queue.add(data.getString("fname"));
+                    fileInfo f = new fileInfo(data.getInt("fid"), data.getString("fname"));
+                    queue.add(f);
                 }
             }
             //System.out.println(queue.isEmpty());

@@ -1,0 +1,94 @@
+DEBUG [main] 2021-02-07 16:24:10,712 retrieve.java (line 81) retrieve CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,712 retrieve.java (line 81) retrieve CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,713 retrieve.java (line 87) retrieve CONSTRUCT0R - DONE
+DEBUG [main] 2021-02-07 16:24:10,713 retrieve.java (line 87) retrieve CONSTRUCT0R - DONE
+DEBUG [main] 2021-02-07 16:24:10,713 retrieve.java (line 25) Clearing queue
+DEBUG [main] 2021-02-07 16:24:10,713 retrieve.java (line 25) Clearing queue
+DEBUG [main] 2021-02-07 16:24:10,714 retrieve.java (line 27) Clearing queue - DONE
+DEBUG [main] 2021-02-07 16:24:10,714 retrieve.java (line 27) Clearing queue - DONE
+DEBUG [main] 2021-02-07 16:24:10,714 retrieve.java (line 29) Clearing result
+DEBUG [main] 2021-02-07 16:24:10,714 retrieve.java (line 29) Clearing result
+DEBUG [main] 2021-02-07 16:24:10,714 retrieve.java (line 31) Clearing result - DONE
+DEBUG [main] 2021-02-07 16:24:10,714 retrieve.java (line 31) Clearing result - DONE
+DEBUG [main] 2021-02-07 16:24:10,715 retrieve.java (line 56) Multi-thread - retrieve
+DEBUG [main] 2021-02-07 16:24:10,715 retrieve.java (line 56) Multi-thread - retrieve
+DEBUG [main] 2021-02-07 16:24:10,719 retrieve.java (line 58) Starting 5 threads
+DEBUG [main] 2021-02-07 16:24:10,719 retrieve.java (line 58) Starting 5 threads
+DEBUG [main] 2021-02-07 16:24:10,719 retrieve.java (line 61) Starting thread 1 to execute get.run()
+DEBUG [main] 2021-02-07 16:24:10,719 retrieve.java (line 61) Starting thread 1 to execute get.run()
+DEBUG [main] 2021-02-07 16:24:10,719 retrieve.java (line 63) Thread 1 - STARTED
+DEBUG [main] 2021-02-07 16:24:10,719 retrieve.java (line 63) Thread 1 - STARTED
+DEBUG [main] 2021-02-07 16:24:10,725 retrieve.java (line 65) Starting thread 11 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,725 retrieve.java (line 65) Starting thread 11 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,725 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,725 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,725 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,725 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,726 retrieve.java (line 67) Thread 11 = STARTED
+DEBUG [main] 2021-02-07 16:24:10,726 retrieve.java (line 67) Thread 11 = STARTED
+DEBUG [pool-1-thread-2] 2021-02-07 16:24:10,726 search.java (line 30) search.run()
+DEBUG [pool-1-thread-2] 2021-02-07 16:24:10,726 search.java (line 30) search.run()
+DEBUG [pool-1-thread-2] 2021-02-07 16:24:10,726 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-2] 2021-02-07 16:24:10,726 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-2] 2021-02-07 16:24:10,729 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-2] 2021-02-07 16:24:10,729 search.java (line 63) search.run - DONE
+DEBUG [main] 2021-02-07 16:24:10,731 retrieve.java (line 65) Starting thread 21 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,731 retrieve.java (line 65) Starting thread 21 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,731 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,731 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,731 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,731 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,731 retrieve.java (line 67) Thread 21 = STARTED
+DEBUG [main] 2021-02-07 16:24:10,731 retrieve.java (line 67) Thread 21 = STARTED
+DEBUG [pool-1-thread-3] 2021-02-07 16:24:10,732 search.java (line 30) search.run()
+DEBUG [pool-1-thread-3] 2021-02-07 16:24:10,732 search.java (line 30) search.run()
+DEBUG [pool-1-thread-3] 2021-02-07 16:24:10,732 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-3] 2021-02-07 16:24:10,732 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-3] 2021-02-07 16:24:10,732 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-3] 2021-02-07 16:24:10,732 search.java (line 63) search.run - DONE
+DEBUG [main] 2021-02-07 16:24:10,737 retrieve.java (line 65) Starting thread 31 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,737 retrieve.java (line 65) Starting thread 31 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,737 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,737 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,737 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,737 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,737 retrieve.java (line 67) Thread 31 = STARTED
+DEBUG [main] 2021-02-07 16:24:10,737 retrieve.java (line 67) Thread 31 = STARTED
+DEBUG [pool-1-thread-4] 2021-02-07 16:24:10,738 search.java (line 30) search.run()
+DEBUG [pool-1-thread-4] 2021-02-07 16:24:10,738 search.java (line 30) search.run()
+DEBUG [pool-1-thread-4] 2021-02-07 16:24:10,738 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-4] 2021-02-07 16:24:10,738 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-4] 2021-02-07 16:24:10,738 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-4] 2021-02-07 16:24:10,738 search.java (line 63) search.run - DONE
+DEBUG [main] 2021-02-07 16:24:10,743 retrieve.java (line 65) Starting thread 41 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,743 retrieve.java (line 65) Starting thread 41 to execute search.run()
+DEBUG [main] 2021-02-07 16:24:10,743 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,743 search.java (line 16) search CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,743 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,743 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,743 retrieve.java (line 67) Thread 41 = STARTED
+DEBUG [main] 2021-02-07 16:24:10,743 retrieve.java (line 67) Thread 41 = STARTED
+DEBUG [pool-1-thread-5] 2021-02-07 16:24:10,743 search.java (line 30) search.run()
+DEBUG [pool-1-thread-5] 2021-02-07 16:24:10,743 search.java (line 30) search.run()
+DEBUG [pool-1-thread-5] 2021-02-07 16:24:10,743 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-5] 2021-02-07 16:24:10,743 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-5] 2021-02-07 16:24:10,743 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-5] 2021-02-07 16:24:10,743 search.java (line 63) search.run - DONE
+DEBUG [main] 2021-02-07 16:24:10,749 retrieve.java (line 72) ALL 5have been started
+DEBUG [main] 2021-02-07 16:24:10,749 retrieve.java (line 72) ALL 5have been started
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,750 fetch_multi.java (line 19) fetch_multi CONSTRUCTOR
+DEBUG [main] 2021-02-07 16:24:10,751 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
+DEBUG [main] 2021-02-07 16:24:10,751 fetch_multi.java (line 22) fetch_multi CONSTRUCTOR - DONE
