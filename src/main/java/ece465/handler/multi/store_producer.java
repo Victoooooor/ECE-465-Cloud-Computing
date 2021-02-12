@@ -19,10 +19,8 @@ public class store_producer implements Runnable{
     @Override
     public void run() {
         try (Stream<Path> walk = Files.walk(Paths.get(directory))) {
-
             List<String> result = walk.filter(Files::isRegularFile)
                     .map(x -> x.toString()).collect(Collectors.toList());
-
             result.forEach(fpath -> mypipe.queue(fpath));
             mypipe.queue("");
         } catch (IOException e) {
