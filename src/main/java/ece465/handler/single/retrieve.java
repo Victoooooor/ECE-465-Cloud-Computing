@@ -27,6 +27,7 @@ public class retrieve {
             int processors = Runtime.getRuntime().availableProcessors();
             System.out.println("Processors = " + processors);
             pool = Executors.newFixedThreadPool(processors);
+            nThreads=processors;
         }else {
             pool = Executors.newFixedThreadPool(nThreads);
         }
@@ -57,11 +58,11 @@ public class retrieve {
             pool.shutdown();
             pool.awaitTermination(0, TimeUnit.SECONDS);
 
-            /*
+
             for(fileInfo f : result){
                 System.out.println(f.getFid() + "\t" + f.getFilename());
             }
-             */
+
 
         }
     }

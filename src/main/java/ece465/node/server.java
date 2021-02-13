@@ -4,9 +4,8 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
+import ece465.handler.multi.getHash;
 import ece465.handler.single.retrieve;
 import ece465.service.Json.*;
 import ece465.util.DBconnection;
@@ -17,11 +16,13 @@ public class server {
     private DBconnection DB_con;
     private retrieve RT;
     private ConcurrentLinkedQueue<fileInfo> result;
+    private getHash HAS;
     public server(int portnum){
         try {
             server = new ServerSocket(portnum);
             DB_con = new DBconnection();
             RT = new retrieve(DB_con);
+            HAS = new getHash(DB_con);
         } catch (IOException e) {
             System.err.println("Server port non available: "+portnum);
             e.printStackTrace();
@@ -59,8 +60,7 @@ public class server {
                         RT.startSearch(Info.filename,0);
                         result=RT.getResult();
                         System.out.println("Search Done");
-                        out.writeUTF(retrieveReturnJsonWriter.generateJson(result));
-
+                        out.writeUTF(retrieveReturnJsonWriter.generateJson(HAS.get(result)));
                         break;
                     case 1:
                         ;
