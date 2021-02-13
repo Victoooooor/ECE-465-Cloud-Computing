@@ -56,12 +56,11 @@ public class server {
                 switch(Info.action){
                     case 0:
                         System.out.println("Search file");
-                        RT.startSearch(Info.filename,6);
+                        RT.startSearch(Info.filename,0);
                         result=RT.getResult();
                         System.out.println("Search Done");
-                        Object[] casting=result.toArray();
-                        ArrayList<fileInfo> casted= Arrays.asList(casting);
-                        retrieveReturnJsonWriter.generateJson(result.toArray());
+                        out.writeUTF(retrieveReturnJsonWriter.generateJson(result));
+
                         break;
                     case 1:
                         ;
