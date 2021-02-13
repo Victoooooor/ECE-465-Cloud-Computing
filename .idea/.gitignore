@@ -2,9 +2,7 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../../../:\Users\victo\OneDrive - The Cooper Union for the Advancement of Science and Art\Documents\GitHub\ECE-465-Cloud-Computing\.idea/dataSources/
+/../../../../../../../../../:\Users\allis\Documents\School\ECE465_CloudComputing\hw\ECE-465-Cloud-Computing\.idea/dataSources/
 /dataSources.local.xml
-# Zeppelin ignored files
-/ZeppelinRemoteNotebooks/
 # Editor-based HTTP Client requests
 /httpRequests/
