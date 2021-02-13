@@ -28,3 +28,6 @@ target
 # ignore temp
 temp
 .idea
+dependency-reduced-pom.xml
+*.iml
+*.iml

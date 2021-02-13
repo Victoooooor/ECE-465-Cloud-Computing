@@ -41,7 +41,21 @@ public class server {
                 System.out.println("From Client text: "+ fromclient);
                 ArrayList<readJson.returnInfo> read = readJson.read(fromclient);
                 readJson.returnInfo Info=read.get(0);
-                System.out.println(Info.filename);
+                System.out.println(Info.action);
+                switch(Info.action){
+                    case 0:
+                        ;
+                        break;
+                    case 1:
+                        ;
+                        break;
+                    case 2:
+                        ;
+                        break;
+                    default:
+                        ;
+                        break;
+                }
                 System.out.println("Done reading");
                 out.writeUTF("this is server talking");
                 out.flush();

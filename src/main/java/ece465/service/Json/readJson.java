@@ -64,13 +64,13 @@ public class readJson {
         public String hash;
         public returnInfo(String act, ArrayList<String> param){
             if(act.equals("retrieve")){
-                this.action = 1;
+                this.action = 0;
                 this.filename = param.remove(0);
             }
         }
         public returnInfo(String act, int fid, String hash){
             if(act.equals("retrieve return")){
-                this.action = 2;
+                this.action = 1;
                 this.fid = fid;
                 this.hash = hash;
             }
