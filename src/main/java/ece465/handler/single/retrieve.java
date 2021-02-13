@@ -25,6 +25,7 @@ public class retrieve {
         queue.clear();
         result.clear();
         this.nThreads=threads;
+        pool = Executors.newFixedThreadPool(nThreads);
         if(this.nThreads == 1){
 
             get g = new get(queue);
@@ -52,6 +53,12 @@ public class retrieve {
             pool.shutdown();
             pool.awaitTermination(0, TimeUnit.SECONDS);
 
+            /*
+            for(fileInfo f : result){
+                System.out.println(f.getFid() + "\t" + f.getFilename());
+            }
+             */
+
         }
     }
 
@@ -60,7 +67,6 @@ public class retrieve {
         dbcp = com_in.getDataSource();
         this.queue = new ConcurrentLinkedQueue<>();
         this.result = new ConcurrentLinkedQueue<>();
-        pool = Executors.newFixedThreadPool(nThreads);
         LOG.debug("retrieve CONSTRUCT0R - DONE");
     }
 
