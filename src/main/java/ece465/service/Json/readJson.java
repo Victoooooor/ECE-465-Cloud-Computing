@@ -1,8 +1,6 @@
 package ece465.service.Json;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.json.*;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,18 +27,20 @@ public class readJson {
             result.add(r);
             return result;
         } else if(action.equals("retrieve return")){
-            Object[] fid = paramObj.getJsonArray("fid").toArray();
-            ArrayList<Object> fids = new ArrayList<>(Arrays.asList(fid));
+            //ArrayList<Integer> fids = new ArrayList<>();
+            //ArrayList<Object> hashes = new ArrayList<>();
 
-            Object[] hash = paramObj.getJsonArray("hash").toArray();
-            ArrayList<Object> hashes = new ArrayList<>(Arrays.asList(hash));
+            JsonArray fid = paramObj.getJsonArray("fid");
+            JsonArray hash = paramObj.getJsonArray("hash");
 
-            if(fids.size() != hashes.size()){
+            if(fid.size() != hash.size()){
                 System.out.println("Error!");
                 return null;
             } else{
-                for(int i=0; i< fids.size(); i++){
-                    returnInfo r = new returnInfo(action, fids.get(i), hashes.get(i));
+                for (int i = 0; i < fid.size(); i++) {
+                    //fids.add(fid.getInt(i));
+                    //hashes.add(hash.getString(i));
+                    returnInfo r = new returnInfo(action, fid.getInt(i), hash.getString(i));
                     result.add(r);
                     r.pprint();
                 }
@@ -49,12 +49,12 @@ public class readJson {
         }
 
 
-
+        /*
         for (String key : paramObj.keySet()) {
             param.add(paramObj.getString(key));
         }
+         */
         return null;
-
     }
 
     public class returnInfo{
@@ -68,11 +68,11 @@ public class readJson {
                 this.filename = param.remove(0);
             }
         }
-        public returnInfo(String act, Object fid, Object hash){
+        public returnInfo(String act, int fid, String hash){
             if(act.equals("retrieve return")){
                 this.action = 2;
                 this.fid = fid;
-                this.hash = (String) hash;
+                this.hash = hash;
             }
 
         }
