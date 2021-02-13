@@ -16,17 +16,13 @@ public class readJson {
 
         String action = actionObj.getString("action");
 
-        ArrayList<String> param = new ArrayList<>();
-
         if(action.equals("retrieve")){
             String filename = paramObj.getString("filename");
-            param.add(filename);
-            returnInfo r = new returnInfo(action, param);
+            returnInfo r = new returnInfo(action, filename);
             result.add(r);
+            r.pprint0();
             return result;
         } else if(action.equals("retrieve return")){
-            //ArrayList<Integer> fids = new ArrayList<>();
-            //ArrayList<Object> hashes = new ArrayList<>();
 
             JsonArray fid = paramObj.getJsonArray("fid");
             JsonArray hash = paramObj.getJsonArray("hash");
@@ -36,22 +32,13 @@ public class readJson {
                 return null;
             } else{
                 for (int i = 0; i < fid.size(); i++) {
-                    //fids.add(fid.getInt(i));
-                    //hashes.add(hash.getString(i));
                     returnInfo r = new returnInfo(action, fid.getInt(i), hash.getString(i));
                     result.add(r);
-                    r.pprint();
+                    r.pprint1();
                 }
                 return result;
             }
         }
-
-
-        /*
-        for (String key : paramObj.keySet()) {
-            param.add(paramObj.getString(key));
-        }
-         */
         return null;
     }
 
@@ -60,10 +47,10 @@ public class readJson {
         public String filename;
         public Integer fid;
         public String hash;
-        public returnInfo(String act, ArrayList<String> param){
+        public returnInfo(String act, String filename){
             if(act.equals("retrieve")){
                 this.action = 0;
-                this.filename = param.remove(0);
+                this.filename = filename;
             }
         }
         public returnInfo(String act, int fid, String hash){
@@ -74,7 +61,8 @@ public class readJson {
             }
 
         }
-        public void pprint(){
+        public void pprint0() { System.out.println("filename: " + filename); }
+        public void pprint1(){
             System.out.println("fid: " + this.fid + "\thash: " + this.hash);
         }
     }
