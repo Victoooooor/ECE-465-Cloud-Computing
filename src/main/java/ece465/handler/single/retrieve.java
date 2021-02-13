@@ -1,10 +1,8 @@
 package ece465.handler.single;
 
 import javax.sql.DataSource;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+
 import org.apache.log4j.Logger;
 
 import ece465.util.DBconnection;
@@ -25,7 +23,13 @@ public class retrieve {
         queue.clear();
         result.clear();
         this.nThreads=threads;
-        pool = Executors.newFixedThreadPool(nThreads);
+        if(nThreads == 0){
+            int processors = Runtime.getRuntime().availableProcessors();
+            System.out.println("Processors = " + processors);
+            pool = Executors.newFixedThreadPool(processors);
+        }else {
+            pool = Executors.newFixedThreadPool(nThreads);
+        }
         if(this.nThreads == 1){
 
             get g = new get(queue);
