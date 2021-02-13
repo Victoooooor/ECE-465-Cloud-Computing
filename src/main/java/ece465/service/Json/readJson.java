@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class readJson {
-    public ArrayList<returnInfo> read(String inputJson){
+    public static ArrayList<returnInfo> read(String inputJson){
         ArrayList<returnInfo> result = new ArrayList<>();
 
         JsonReader jsonReader = Json.createReader(new StringReader(inputJson));
@@ -57,11 +57,11 @@ public class readJson {
         return null;
     }
 
-    public class returnInfo{
-        int action;
-        String filename;
-        Integer fid;
-        String hash;
+    public static class returnInfo{
+        public int action;
+        public String filename;
+        public Integer fid;
+        public String hash;
         public returnInfo(String act, ArrayList<String> param){
             if(act.equals("retrieve")){
                 this.action = 1;
