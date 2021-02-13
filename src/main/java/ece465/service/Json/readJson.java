@@ -3,8 +3,6 @@ package ece465.service.Json;
 import javax.json.*;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 
 public class readJson {
     public static ArrayList<returnInfo> read(String inputJson){
