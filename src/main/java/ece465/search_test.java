@@ -18,8 +18,8 @@ public class search_test {
         LocalTime start = LocalTime.now();
 
         DBconnection DB_con = new DBconnection();
-        retrieve RT = new retrieve(DB_con, nThreads);
-        RT.startSearch(searchWord);
+        retrieve RT = new retrieve(DB_con);
+        RT.startSearch(searchWord, nThreads);
 
         LocalTime end = LocalTime.now();
 

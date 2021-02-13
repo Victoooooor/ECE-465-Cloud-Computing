@@ -18,16 +18,14 @@ public class retrieve {
     DataSource dbcp;
     private ConcurrentLinkedQueue<fileInfo> queue;
     private ConcurrentLinkedQueue<fileInfo> result;
-    private final int nThreads;
+    private int nThreads;
     ExecutorService pool;
 
-    public void startSearch(String searchWord) throws Exception {
-        LOG.debug("Clearing queue");
+    public void startSearch(String searchWord,int threads) throws Exception {
         queue.clear();
         result.clear();
-        LOG.debug("Clearing result - DONE");
-
-        if(nThreads == 1){
+        this.nThreads=threads;
+        if(this.nThreads == 1){
 
             get g = new get(queue);
             this.queue = g.singleThreadRun(queue);
@@ -57,9 +55,8 @@ public class retrieve {
         }
     }
 
-    public retrieve(DBconnection com_in, int nThreads){
+    public retrieve(DBconnection com_in){
         LOG.debug("retrieve CONSTRUCTOR");
-        this.nThreads = nThreads;
         dbcp = com_in.getDataSource();
         this.queue = new ConcurrentLinkedQueue<>();
         this.result = new ConcurrentLinkedQueue<>();

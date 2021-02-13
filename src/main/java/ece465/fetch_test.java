@@ -23,8 +23,8 @@ public class fetch_test {
         LocalTime start = LocalTime.now();
 
         DBconnection DB_con = new DBconnection();
-        retrieve RT = new retrieve(DB_con, nThreads);
-        RT.startSearch(searchWord);
+        retrieve RT = new retrieve(DB_con);
+        RT.startSearch(searchWord, nThreads);
         ConcurrentLinkedQueue<fileInfo> result=RT.getResult();
         new File("temp").mkdirs();
         new Thread(new fetch_multi(DB_con,result)).start();
