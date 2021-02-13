@@ -34,6 +34,17 @@ Execution To execute our program, make sure you are in the project folder and ru
     This will store every file in the current directory into test database, and hash the files to store in the blocks table
     > java -cp target\BlockChain_FileSystem.jar ece465.threaded_store_hash_test
       > java -jar target\BlockChain_FileSystem.jar    # note: this will do the same
+      
+    To test working server and client:
+        Run server_test first by:
+            > java -cp target\BlockChain_FileSystem.jar ece465.server_test
+        Then run client_test (multiple times if needed) by:
+            > java -cp  target\BlockChain_FileSystem.jar ece465.client_test
+            
+    testJson will create a retrieve Json string and read it, and create a retrieve return Json and read it.
+    > java -cp target\BlockChain_FileSystem.jar ece465.testJson
 
 
-##MVP2: added fetching from database, hash and logger, also fixed maven pom setup
+##MVP3: implemented peer nodes (client and server), read and write JSON to be passed around.
+    To-do: 
+        implement network and protocol, consensus and leader election.
