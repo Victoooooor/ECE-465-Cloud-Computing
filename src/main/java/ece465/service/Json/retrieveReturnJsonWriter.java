@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class retrieveReturnJsonWriter {
-    public static String generateJson(retrieve re){
+    public static String generateJson(ArrayList<fileInfo> input){
         ArrayList<Integer> fid = new ArrayList<>();
         ArrayList<String> hash = new ArrayList<>();
-        ConcurrentLinkedQueue<fileInfo> result = re.getResult();
-        for(fileInfo f : result){
+        for(fileInfo f : input){
             fid.add(f.getFid());
             hash.add(f.getHash());
         }
