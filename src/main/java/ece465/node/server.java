@@ -4,15 +4,18 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import ece465.handler.single.retrieve;
 import ece465.service.Json.*;
 import ece465.util.DBconnection;
+import ece465.util.fileInfo;
 
 public class server {
     private static ServerSocket server;
     private DBconnection DB_con;
     private retrieve RT;
+    private ConcurrentLinkedQueue<fileInfo> result;
     public server(int portnum){
         try {
             server = new ServerSocket(portnum);
@@ -24,7 +27,7 @@ public class server {
         }
     }
 
-    private static class client_handler implements Runnable{
+    private class client_handler implements Runnable{
         private Socket client;
         private DataInputStream in = null;
         private DataOutputStream out = null;
@@ -52,6 +55,7 @@ public class server {
                 switch(Info.action){
                     case 0:
                         System.out.println("Search file");
+                        RT.startSearch(Info.filename,6);
                         break;
                     case 1:
                         ;
@@ -66,7 +70,7 @@ public class server {
                 System.out.println("Done reading");
                 out.writeUTF("this is server talking");
                 out.flush();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             try {
