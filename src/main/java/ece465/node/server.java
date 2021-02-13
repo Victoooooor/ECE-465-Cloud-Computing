@@ -44,7 +44,7 @@ public class server {
                 System.out.println(Info.action);
                 switch(Info.action){
                     case 0:
-                        ;
+                        System.out.println("Search file");
                         break;
                     case 1:
                         ;
