@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import ece465.handler.single.retrieve;
@@ -56,6 +57,11 @@ public class server {
                     case 0:
                         System.out.println("Search file");
                         RT.startSearch(Info.filename,6);
+                        result=RT.getResult();
+                        System.out.println("Search Done");
+                        Object[] casting=result.toArray();
+                        ArrayList<fileInfo> casted= Arrays.asList(casting);
+                        retrieveReturnJsonWriter.generateJson(result.toArray());
                         break;
                     case 1:
                         ;
