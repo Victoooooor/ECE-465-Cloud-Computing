@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class client {
     Socket servers;
+    DataInputStream in;
+    DataOutputStream out;
 
     public client(String ip, int port){
         try {
@@ -16,16 +18,14 @@ public class client {
 
     }
     public void start(){
-        BufferedReader in = null;
-        PrintWriter out = null;
+
         try {
-            in = new BufferedReader(new
-                    InputStreamReader(servers.getInputStream()));
-            out = new
-                    PrintWriter(servers.getOutputStream(), true);
-            out.println("this should be a json file");
+            in = new DataInputStream(new BufferedInputStream(servers.getInputStream()));
+            out = new DataOutputStream(new BufferedOutputStream(servers.getOutputStream()));
+            out.writeUTF("this should be a json file");
+            out.flush();
             System.out.println("Write to server done");
-            System.out.println("Response from server: "+in.readLine());
+            System.out.println("Response from server: "+in.readUTF());
         } catch (IOException e) {
             e.printStackTrace();
         }

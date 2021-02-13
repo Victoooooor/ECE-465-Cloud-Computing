@@ -17,28 +17,28 @@ public class server {
 
     private static class client_handler implements Runnable{
         private Socket client;
+        private DataInputStream in = null;
+        private DataOutputStream out = null;
         public client_handler(Socket client){
             this.client=client;
         }
         @Override
         public void run() {
-            BufferedReader in = null;
-            PrintWriter out = null;
+
             try{
-                in = new BufferedReader(new
-                        InputStreamReader(client.getInputStream()));
-                out = new
-                        PrintWriter(client.getOutputStream(), true);
+                in = new DataInputStream(new BufferedInputStream(client.getInputStream()));
+                out = new DataOutputStream(new BufferedOutputStream(client.getOutputStream()));
             } catch (IOException e) {
                 System.err.println("client get Stream failed");
                 System.exit(-1);
             }
             try {
                 System.out.println("reading");
-                String fromclient=in.readLine();
+                String fromclient=in.readUTF();
                 System.out.println("From Client text: "+ fromclient);
                 System.out.println("Done reading");
-                out.println("this is server talking");
+                out.writeUTF("this is server talking");
+                out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -49,6 +49,7 @@ public class server {
         while(true){
             client_handler ch;
             try {
+                System.out.println("waiting");
                 ch=new client_handler(server.accept());
                 Thread T=new Thread(ch);
                 T.start();
