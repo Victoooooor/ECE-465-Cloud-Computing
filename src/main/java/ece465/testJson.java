@@ -26,8 +26,6 @@ public class testJson {
                         .add("fid", Json.createArrayBuilder(fid))
                         .add("hash", Json.createArrayBuilder(hash))).build();
         System.out.println(obj.toString());
-
-        readJson r = new readJson();
-        r.read(obj.toString());
+        readJson.read(obj.toString());
     }
 }

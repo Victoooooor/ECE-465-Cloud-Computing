@@ -17,15 +17,30 @@ public class client {
         }
 
     }
-    public void start(){
+    public void send(String content){
 
         try {
             in = new DataInputStream(new BufferedInputStream(servers.getInputStream()));
             out = new DataOutputStream(new BufferedOutputStream(servers.getOutputStream()));
-            out.writeUTF("this should be a json file");
+            out.writeUTF(content);
             out.flush();
             System.out.println("Write to server done");
             System.out.println("Response from server: "+in.readUTF());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                in.close();
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void stop(){
+        try {
+            servers.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
