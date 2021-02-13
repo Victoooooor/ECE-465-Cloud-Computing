@@ -1,4 +1,4 @@
-package ece465.service;
+package ece465.service.Json;
 
 import javax.json.Json;
 import javax.json.JsonObject;

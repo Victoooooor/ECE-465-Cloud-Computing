@@ -1,4 +1,4 @@
-package ece465.service;
+package ece465.service.Json;
 
 import ece465.handler.single.retrieve;
 import ece465.util.fileInfo;

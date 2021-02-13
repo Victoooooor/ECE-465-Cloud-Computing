@@ -1,7 +1,6 @@
 package ece465;
 
-import ece465.service.retrieveJsonWriter;
-import ece465.service.readJson;
+import ece465.service.Json.readJson;
 
 import javax.json.Json;
 import javax.json.JsonObject;
