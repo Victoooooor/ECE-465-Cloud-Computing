@@ -10,6 +10,10 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# .folder
+.*
+!.*/
+
 # Package Files #
 *.jar
 *.war
@@ -27,3 +31,7 @@ target
 
 # ignore temp
 temp
+.idea
+dependency-reduced-pom.xml
+*.iml
+*.iml
