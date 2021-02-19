@@ -24,25 +24,22 @@ public class fetch {
     public fetch(DBconnection con_in){
         dbcp=con_in.getDataSource();
     }
-    public void getfile(final int fid,DataOutputStream out){
+    public void getfile(final int fid){
         try {
             conn=dbcp.getConnection();
             stmt=conn.prepareStatement("select * from files where fid=?");
             stmt.setInt(1, fid);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()) {
-//                fname = Paths.get(rs.getString("fname"));
-//                file= new File("."+File.separator+"temp"+File.separator+fname.getFileName());
-//                output = new FileOutputStream(file);
-//                System.out.println(fname.getFileName());
+                fname = Paths.get(rs.getString("fname"));
+                file= new File("."+File.separator+"temp"+File.separator+fname.getFileName());
+                output = new FileOutputStream(file);
+                System.out.println(fname.getFileName());
                 input = rs.getBinaryStream("stored");
-                out.writeLong(input.available());
-                out.flush();
                 int count;
                 byte[] buffer = new byte[8192];
                 while ((count=input.read(buffer)) > 0) {
-                    out.write(buffer,0,count);
-                    out.flush();
+                    output.write(buffer,0,count);
                 }
             }
         } catch (IOException | SQLException throwables) {

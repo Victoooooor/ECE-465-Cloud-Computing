@@ -12,7 +12,7 @@ public class client_test {
         c = new client();
         String search_result= null;
         try {
-            search_result = c.send(new Socket("0.0.0.0",4666), searchJsonWriter.generateJson(".pdf"));
+            search_result = c.send(new Socket("0.0.0.0",4666), searchJsonWriter.generateJson(".j"));
             System.out.println("search result: "+search_result);
             ArrayList<readJson.returnInfo> returned = readJson.read(search_result);
             c.receive(returned,0);

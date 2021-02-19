@@ -26,7 +26,7 @@ public class fetch_multi implements Runnable{
         fetch FF=new fetch(con);
         while((current=tofetch.poll())!=null){
             System.out.println(Thread.currentThread().getId()+": "+current.getFilename());
-            FF.getfile(current.getFid());
+//            FF.getfile(current.getFid());
         }
     }
 }
