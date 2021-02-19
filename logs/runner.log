@@ -4392,3 +4392,123 @@ DEBUG [pool-2-thread-12] 2021-02-20 00:17:17,693 search.java (line 63) search.ru
 DEBUG [pool-2-thread-12] 2021-02-20 00:17:17,693 search.java (line 63) search.run - DONE
 DEBUG [Thread-16] 2021-02-20 00:17:17,699 retrieve.java (line 56) ALL 12have been started
 DEBUG [Thread-16] 2021-02-20 00:17:17,699 retrieve.java (line 56) ALL 12have been started
+DEBUG [main] 2021-02-20 07:06:41,335 retrieve.java (line 71) retrieve CONSTRUCTOR
+DEBUG [main] 2021-02-20 07:06:41,335 retrieve.java (line 71) retrieve CONSTRUCTOR
+DEBUG [main] 2021-02-20 07:06:41,338 retrieve.java (line 75) retrieve CONSTRUCT0R - DONE
+DEBUG [main] 2021-02-20 07:06:41,338 retrieve.java (line 75) retrieve CONSTRUCT0R - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,152 retrieve.java (line 44) Multi-thread - retrieve
+DEBUG [Thread-0] 2021-02-20 07:06:43,152 retrieve.java (line 44) Multi-thread - retrieve
+DEBUG [Thread-0] 2021-02-20 07:06:43,153 retrieve.java (line 46) Starting 12 threads
+DEBUG [Thread-0] 2021-02-20 07:06:43,153 retrieve.java (line 46) Starting 12 threads
+DEBUG [Thread-0] 2021-02-20 07:06:43,165 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,165 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,165 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,165 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-2] 2021-02-20 07:06:43,165 search.java (line 30) search.run()
+DEBUG [pool-1-thread-2] 2021-02-20 07:06:43,165 search.java (line 30) search.run()
+DEBUG [pool-1-thread-2] 2021-02-20 07:06:43,166 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-2] 2021-02-20 07:06:43,166 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-2] 2021-02-20 07:06:43,167 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-2] 2021-02-20 07:06:43,167 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,171 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,171 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,171 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,171 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-3] 2021-02-20 07:06:43,171 search.java (line 30) search.run()
+DEBUG [pool-1-thread-3] 2021-02-20 07:06:43,171 search.java (line 30) search.run()
+DEBUG [pool-1-thread-3] 2021-02-20 07:06:43,172 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-3] 2021-02-20 07:06:43,172 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-3] 2021-02-20 07:06:43,173 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-3] 2021-02-20 07:06:43,173 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,177 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,177 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,177 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,177 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-4] 2021-02-20 07:06:43,179 search.java (line 30) search.run()
+DEBUG [pool-1-thread-4] 2021-02-20 07:06:43,179 search.java (line 30) search.run()
+DEBUG [pool-1-thread-4] 2021-02-20 07:06:43,180 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-4] 2021-02-20 07:06:43,180 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-4] 2021-02-20 07:06:43,183 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-4] 2021-02-20 07:06:43,183 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,185 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,185 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,185 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,185 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-5] 2021-02-20 07:06:43,186 search.java (line 30) search.run()
+DEBUG [pool-1-thread-5] 2021-02-20 07:06:43,186 search.java (line 30) search.run()
+DEBUG [pool-1-thread-5] 2021-02-20 07:06:43,187 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-5] 2021-02-20 07:06:43,187 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-5] 2021-02-20 07:06:43,187 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-5] 2021-02-20 07:06:43,187 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,191 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,191 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,191 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,191 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-6] 2021-02-20 07:06:43,192 search.java (line 30) search.run()
+DEBUG [pool-1-thread-6] 2021-02-20 07:06:43,192 search.java (line 30) search.run()
+DEBUG [pool-1-thread-6] 2021-02-20 07:06:43,192 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-6] 2021-02-20 07:06:43,192 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-6] 2021-02-20 07:06:43,192 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-6] 2021-02-20 07:06:43,192 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,197 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,197 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,197 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,197 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-7] 2021-02-20 07:06:43,197 search.java (line 30) search.run()
+DEBUG [pool-1-thread-7] 2021-02-20 07:06:43,197 search.java (line 30) search.run()
+DEBUG [pool-1-thread-7] 2021-02-20 07:06:43,198 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-7] 2021-02-20 07:06:43,198 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-7] 2021-02-20 07:06:43,198 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-7] 2021-02-20 07:06:43,198 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,203 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,203 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,203 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,203 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-8] 2021-02-20 07:06:43,204 search.java (line 30) search.run()
+DEBUG [pool-1-thread-8] 2021-02-20 07:06:43,204 search.java (line 30) search.run()
+DEBUG [pool-1-thread-8] 2021-02-20 07:06:43,204 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-8] 2021-02-20 07:06:43,204 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-8] 2021-02-20 07:06:43,204 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-8] 2021-02-20 07:06:43,204 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,209 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,209 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,209 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,209 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-9] 2021-02-20 07:06:43,209 search.java (line 30) search.run()
+DEBUG [pool-1-thread-9] 2021-02-20 07:06:43,209 search.java (line 30) search.run()
+DEBUG [pool-1-thread-9] 2021-02-20 07:06:43,210 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-9] 2021-02-20 07:06:43,210 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-9] 2021-02-20 07:06:43,210 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-9] 2021-02-20 07:06:43,210 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,215 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,215 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,215 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,215 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-10] 2021-02-20 07:06:43,215 search.java (line 30) search.run()
+DEBUG [pool-1-thread-10] 2021-02-20 07:06:43,215 search.java (line 30) search.run()
+DEBUG [pool-1-thread-10] 2021-02-20 07:06:43,216 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-10] 2021-02-20 07:06:43,216 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-10] 2021-02-20 07:06:43,216 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-10] 2021-02-20 07:06:43,216 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,221 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,221 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,221 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,221 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-11] 2021-02-20 07:06:43,221 search.java (line 30) search.run()
+DEBUG [pool-1-thread-11] 2021-02-20 07:06:43,221 search.java (line 30) search.run()
+DEBUG [pool-1-thread-11] 2021-02-20 07:06:43,222 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-11] 2021-02-20 07:06:43,222 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-11] 2021-02-20 07:06:43,222 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-11] 2021-02-20 07:06:43,222 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,227 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,227 search.java (line 16) search CONSTRUCTOR
+DEBUG [Thread-0] 2021-02-20 07:06:43,227 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,227 search.java (line 21) search CONSTRUCTOR - DONE
+DEBUG [pool-1-thread-12] 2021-02-20 07:06:43,228 search.java (line 30) search.run()
+DEBUG [pool-1-thread-12] 2021-02-20 07:06:43,228 search.java (line 30) search.run()
+DEBUG [pool-1-thread-12] 2021-02-20 07:06:43,228 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-12] 2021-02-20 07:06:43,228 search.java (line 43) search.run() - multi-thread
+DEBUG [pool-1-thread-12] 2021-02-20 07:06:43,228 search.java (line 63) search.run - DONE
+DEBUG [pool-1-thread-12] 2021-02-20 07:06:43,228 search.java (line 63) search.run - DONE
+DEBUG [Thread-0] 2021-02-20 07:06:43,233 retrieve.java (line 56) ALL 12have been started
+DEBUG [Thread-0] 2021-02-20 07:06:43,233 retrieve.java (line 56) ALL 12have been started

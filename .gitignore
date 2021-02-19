@@ -30,7 +30,7 @@ hs_err_pid*
 target
 
 # ignore temp
-temp
+*temp
 .idea
 dependency-reduced-pom.xml
 *.iml
