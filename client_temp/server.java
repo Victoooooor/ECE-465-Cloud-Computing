@@ -8,9 +8,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import ece465.handler.multi.getHash;
 import ece465.handler.single.retrieve;
 import ece465.service.Json.*;
+import ece465.service.threaded_store;
 import ece465.util.DBconnection;
 import ece465.util.fileInfo;
-
+import ece465.handler.single.fetch;
 public class server {
     private static ServerSocket server;
     private DBconnection DB_con;
@@ -52,29 +53,42 @@ public class server {
                 String fromclient=in.readUTF();
                 System.out.println("From Client text: "+ fromclient);
                 ArrayList<readJson.returnInfo> read = readJson.read(fromclient);
-                readJson.returnInfo Info=read.get(0);
-                System.out.println(Info.action);
-                switch(Info.action){
-                    case 0:
-                        System.out.println("Search file");
-                        RT.startSearch(Info.filename,0);
-                        result=RT.getResult();
-                        System.out.println("Search Done");
-                        out.writeUTF(retrieveReturnJsonWriter.generateJson(HAS.get(result)));
-                        break;
-                    case 1:
-                        ;
-                        break;
-                    case 2:
-                        ;
-                        break;
-                    default:
-                        ;
-                        break;
+                allread:for(readJson.returnInfo Info:read) {
+                    System.out.println(Info.action);
+                    switch (Info.action) {
+                        case 0://search by filename
+                            System.out.println("Search file: " + Info.filename);
+                            try {
+                                RT.startSearch(Info.filename, 0);
+                                result = RT.getResult();
+                                System.out.println("Search Done");
+                                out.writeUTF(searchReturnJsonWriter.generateJson(HAS.get(result), server.getInetAddress().toString().split("/")[1], server.getLocalPort()));
+                                out.flush();
+                            } catch (Exception e) {
+                                System.err.println("Server Processing Search error");
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 1://only client
+                            ;
+                            break;
+                        case 2://fetch
+                            System.out.println("Fetching: ");
+                            fetch ft = new fetch(DB_con);
+                            ft.getfile(Info.fid, out);
+                            break;
+                        case 3://save to db
+                            threaded_store.store(DB_con, read, 0);
+                            out.writeUTF("Write to DB done");
+                            out.flush();
+                            break allread;
+                        default:
+                            ;
+                            break;
+                    }
+                    System.out.println("Done processing request");
                 }
-                System.out.println("Done reading");
-                out.writeUTF("this is server talking");
-                out.flush();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

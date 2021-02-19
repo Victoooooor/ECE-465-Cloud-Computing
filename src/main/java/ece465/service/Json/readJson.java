@@ -44,6 +44,13 @@ public class readJson {
             returnInfo r = new returnInfo(action, fid);
             result.add(r);
             return result;
+        }else if(action.equals("add")){
+            JsonArray fname = paramObj.getJsonArray("filename");
+            for(int i=0;i< fname.size();i++){
+                System.out.println("String name:::: "+ fname.getString(i));
+                result.add(new returnInfo(action,fname.getString(i)));
+            }
+            return result;
         }
         return null;
     }
@@ -59,6 +66,10 @@ public class readJson {
             if(act.equals("search")){
                 this.action = 0;
                 this.filename = filename;
+            }
+            else if(act.equals("add")){
+                this.action=3;
+                this.filename=filename;
             }
         }
         public returnInfo(String act, String fname, int fid, String hash,String ip, Integer port){
