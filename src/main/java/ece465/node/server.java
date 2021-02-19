@@ -52,29 +52,36 @@ public class server {
                 String fromclient=in.readUTF();
                 System.out.println("From Client text: "+ fromclient);
                 ArrayList<readJson.returnInfo> read = readJson.read(fromclient);
-                readJson.returnInfo Info=read.get(0);
-                System.out.println(Info.action);
-                switch(Info.action){
-                    case 0:
-                        System.out.println("Search file");
-                        RT.startSearch(Info.filename,0);
-                        result=RT.getResult();
-                        System.out.println("Search Done");
-                        out.writeUTF(retrieveReturnJsonWriter.generateJson(HAS.get(result)));
-                        break;
-                    case 1:
-                        ;
-                        break;
-                    case 2:
-                        ;
-                        break;
-                    default:
-                        ;
-                        break;
-                }
-                System.out.println("Done reading");
-                out.writeUTF("this is server talking");
-                out.flush();
+                read.forEach(Info->{
+                    System.out.println(Info.action);
+                    switch(Info.action){
+                        case 0://search by filename
+                            System.out.println("Search file: "+Info.filename);
+                            try {
+                                RT.startSearch(Info.filename,0);
+                                result=RT.getResult();
+                                System.out.println("Search Done");
+                                out.writeUTF(searchReturnJsonWriter.generateJson(HAS.get(result), server.getInetAddress().toString().split("/")[1], server.getLocalPort()));
+                                out.flush();
+                            } catch (Exception e) {
+                                System.err.println("Server Processing Search error");
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 1://only client
+                            ;
+                            break;
+                        case 2://fetch
+                            System.out.println("Fetching: ");
+
+                            break;
+                        default:
+                            ;
+                            break;
+                    }
+                    System.out.println("Done processing request");
+                });
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

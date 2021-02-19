@@ -17,9 +17,10 @@ public class fetch {
     private ResultSet rs;
     private Path fname;
 
-    File file;
-    FileOutputStream output;
-    InputStream input;
+    private File file;
+    private FileOutputStream output;
+    private InputStream input;
+
     public fetch(DBconnection con_in){
         dbcp=con_in.getDataSource();
     }
@@ -35,9 +36,10 @@ public class fetch {
                 output = new FileOutputStream(file);
                 System.out.println(fname.getFileName());
                 input = rs.getBinaryStream("stored");
-                byte[] buffer = new byte[input.available()];
-                while (input.read(buffer) > 0) {
-                    output.write(buffer);
+                int count;
+                byte[] buffer = new byte[8192];
+                while ((count=input.read(buffer)) > 0) {
+                    output.write(buffer,0,count);
                 }
             }
         } catch (IOException | SQLException throwables) {
