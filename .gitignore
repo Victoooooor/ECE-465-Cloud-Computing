@@ -32,6 +32,7 @@ target
 # ignore temp
 *temp
 .idea
+logs
 dependency-reduced-pom.xml
 *.iml
 *.iml
