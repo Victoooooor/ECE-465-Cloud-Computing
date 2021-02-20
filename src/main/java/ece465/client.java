@@ -8,10 +8,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class client_test {
+public class client {
     public static void main(String[] args) {
-        client c= null;
-        c = new client();
+        ece465.node.client c= null;
+        c = new ece465.node.client();
         boolean exit = false;
         while(!exit) {
             String search_result = null;
@@ -51,6 +51,7 @@ public class client_test {
                         search_result = c.send(new Socket("0.0.0.0", 4666), searchJsonWriter.generateJson(searchword));
                         System.out.println("search result: " + search_result);
                         ArrayList<readJson.returnInfo> returned = readJson.read(search_result);
+
                         System.out.println("Pleas select the files you want to retrieve, " +
                                 "separated by newline character (one file per line), press enter again to finish.");
                         for (int i = 0; i < returned.size(); i++) {

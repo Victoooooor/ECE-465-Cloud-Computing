@@ -1,8 +1,8 @@
 package ece465;
 import ece465.node.*;
-public class server_test {
+public class server {
     public static void main(String[] args) {
-        server s= new server(4666);
+        ece465.node.server s= new ece465.node.server(4666);
         s.start();
 
     }

@@ -37,9 +37,9 @@ Execution To execute our program, make sure you are in the project folder and ru
       
     To test working server and client:
         Run server_test first by:
-            > java -cp target\BlockChain_FileSystem.jar ece465.server_test
+            > java -cp target\BlockChain_FileSystem.jar ece465.server
         Then run client_test (multiple times if needed) by:
-            > java -cp  target\BlockChain_FileSystem.jar ece465.client_test
+            > java -cp  target\BlockChain_FileSystem.jar ece465.client
             
     testJson will create a retrieve Json string and read it, and create a retrieve return Json and read it.
     > java -cp target\BlockChain_FileSystem.jar ece465.testJson

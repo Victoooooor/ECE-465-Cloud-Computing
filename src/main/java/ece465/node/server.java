@@ -18,12 +18,14 @@ public class server {
     private retrieve RT;
     private ConcurrentLinkedQueue<fileInfo> result;
     private getHash HAS;
+    private peerlist peers;
     public server(int portnum){
         try {
             server = new ServerSocket(portnum);
             DB_con = new DBconnection();
             RT = new retrieve(DB_con);
             HAS = new getHash(DB_con);
+            peers=new peerlist();
         } catch (IOException e) {
             System.err.println("Server port non available: "+portnum);
             e.printStackTrace();
@@ -62,7 +64,14 @@ public class server {
                                 RT.startSearch(Info.filename, 0);
                                 result = RT.getResult();
                                 System.out.println("Search Done");
-                                out.writeUTF(searchReturnJsonWriter.generateJson(HAS.get(result), server.getInetAddress().toString().split("/")[1], server.getLocalPort()));
+                                ArrayList<String> netresult=peers.broadcast(fromclient,0);
+                                ArrayList<readJson.returnInfo> fromnet=new ArrayList<>();
+                                netresult.forEach(f->{
+                                    fromnet.addAll(readJson.read(f));
+                                });
+                                String fromlocal=searchReturnJsonWriter.generateJson(HAS.get(result), server.getInetAddress().toString().split("/")[1], server.getLocalPort());
+                                fromnet.addAll(readJson.read(fromlocal));
+                                out.writeUTF(readJsonWriter.generateJson(fromnet));
                                 out.flush();
                             } catch (Exception e) {
                                 System.err.println("Server Processing Search error");
