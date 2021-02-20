@@ -26,4 +26,5 @@ Execution To execute our program, make sure you are in the project folder and ru
     > java -cp target\BlockChain_FileSystem.jar ece465.client
     Follow the commanline instruction in client. 
 
-##MVP4: improved peer nodes (client and server), implemented peerlist and broadcasting functionality.
+##MVP4: 
+    improved peer nodes (client and server), implemented peerlist and broadcasting functionality.
