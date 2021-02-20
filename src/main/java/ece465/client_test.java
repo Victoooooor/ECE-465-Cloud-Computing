@@ -59,9 +59,14 @@ public class client_test {
                         String fn;
                         ArrayList<readJson.returnInfo> fetching = new ArrayList<>();
                         fn = scanner.nextLine();
+                        int n = Integer.parseInt(fn);
+                        fetching.add(returned.get(n-1));
                         while (!(fn = scanner.nextLine()).isBlank()) {
-                            int n = Integer.parseInt(fn);
+                            n = Integer.parseInt(fn);
                             fetching.add(returned.get(n - 1));
+                        }
+                        for(readJson.returnInfo a: fetching){
+                            System.out.println(a.filename);
                         }
                         c.receive(fetching, 0);
                     } catch (IOException e){
