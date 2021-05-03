@@ -80,7 +80,7 @@ public class server {
             get("/hi", (req, res) -> this.handler.hi(req, res), gson::toJson);
 
             get("/search/:filename", (req, res) -> this.handler.search(req, res), gson::toJson);
-            get("/fetch/:filename", (req, res) -> "fetch called");
+            get("/fetch/:fid", (req, res) -> this.handler.fetch(req, res), gson::toJson);
             post("/upload", (req, res) -> this.handler.upload(req, res), gson::toJson);
 
 
@@ -197,6 +197,18 @@ public class server {
                 response.body("alright");
 
                 return "OK";
+            }
+
+            public OutputStream fetch(Request request, Response response){
+                try{
+                    out = new DataOutputStream(new BufferedOutputStream(client.getOutputStream()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                int fid = Integer.parseInt(request.params(":fid"));
+                fetch ft = new fetch(DB_con);
+                ft.getfile(fid, out);
+                return out;
             }
         }
     }

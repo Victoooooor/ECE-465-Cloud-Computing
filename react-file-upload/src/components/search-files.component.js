@@ -44,7 +44,7 @@ export default class SearchFiles extends Component {
                         <div className="card-header">List of Files</div>
                         <ul className="list-group list-group-flush">
                             {this.state.result.map((result, index) =>(
-                                <li className="list-group-item" key={index}>
+                                <li className="list-group-item" key={index} onClick={() => this.onFileDownload(result)}>
                                     {result.filename}
                                 </li>
                             ))}
@@ -66,6 +66,11 @@ export default class SearchFiles extends Component {
                 </div>
             );
         }
+    }
+
+    onFileDownload = (f) => {
+        console.log("download")
+        console.log(f)
     }
 
     render() {
