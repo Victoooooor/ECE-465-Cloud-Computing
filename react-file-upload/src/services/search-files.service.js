@@ -1,4 +1,3 @@
-import http from "../http-common";
 import {BACKEND_URL} from "./api";
 
 class SearchFilesService {
