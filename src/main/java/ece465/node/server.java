@@ -91,6 +91,25 @@ public class server {
                             out.writeUTF("Write to DB done");
                             out.flush();
                             break allread;
+                        case 4://broadcast message
+                            if(peers.nodelist.size() < 32) {
+                                peers.register(read.get(0).ip, read.get(0).port);
+                                String message = returnMsgJsonWriter.generateJson(server.getInetAddress().toString().split("/")[1], server.getLocalPort());
+                                peers.returnMsg(server.getInetAddress().toString().split("/")[1], server.getLocalPort(),message);
+                            }
+                            peers.broadcast(fromclient, 0);
+                            break;
+                        case 5://return message
+                            if(peers.nodelist.size() < 8) {
+                                peers.register(read.get(0).ip, read.get(0).port);
+                            }else{
+                                String message = confirmationMsgJsonWriter.generateJson(server.getInetAddress().toString().split("/")[1], server.getLocalPort());
+                                peers.confirmationMsg(server.getInetAddress().toString().split("/")[1], server.getLocalPort(),message);
+                            }
+                            break;
+                        case 6://delete
+                            peers.delete(read.get(0).ip, read.get(0).port);
+                            break;
                         default:
                             ;
                             break;

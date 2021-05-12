@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class peerlist {//to implement node to node connection, consensus, central node lookup
-    private ArrayList<peer> nodelist;
+    public ArrayList<peer> nodelist;
     public peerlist(ArrayList<peer> copy){
         this.nodelist=copy;
     }
@@ -45,8 +45,6 @@ public class peerlist {//to implement node to node connection, consensus, centra
                     out.flush();
                     results.add(in.readUTF());
 
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -78,5 +76,31 @@ public class peerlist {//to implement node to node connection, consensus, centra
         });
         String[] temp=new String[results.size()];
         return new ArrayList<>(Arrays.asList(results.toArray(temp)));
+    }
+    public void returnMsg (String ip, Integer port, String message){
+        try(Socket s=new Socket(ip, port);
+            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(s.getOutputStream()))){
+
+            out.writeUTF(message);
+            out.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void confirmationMsg (String ip, Integer port, String message){
+        try(Socket s=new Socket(ip, port);
+            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(s.getOutputStream()))){
+
+            out.writeUTF(message);
+            out.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void delete (String ip, Integer port){
+        peer p = new peer(ip, port);
+        nodelist.remove(p);
     }
 }

@@ -58,6 +58,12 @@ public class readJson {
                 result.add(new returnInfo(action,fname.getString(i)));
             }
             return result;
+        }else if(action.equals("broadcast_msg") || action.equals("return_msg") || action.equals("confirmation_msg")){
+            String ip = paramObj.getString("ip");
+            Integer port = paramObj.getInt("port");
+            returnInfo r = new returnInfo(action, ip, port);
+            result.add(r);
+            return result;
         }
         return null;
     }
@@ -94,6 +100,21 @@ public class readJson {
             if(act.equals("fetch")){
                 this.action=2;
                 this.fid=fid;
+            }
+        }
+        public returnInfo(String act, String ip, Integer port){
+            if(act.equals("broadcast_msg")){
+                this.action = 4;
+                this.ip = ip;
+                this.port = port;
+            }else if(act.equals("return_msg")){
+                this.action = 5;
+                this.ip = ip;
+                this.port = port;
+            }else if(act.equals("confirmation_msg")){
+                this.action = 6;
+                this.ip = ip;
+                this.port = port;
             }
         }
         public void pprint0() { System.out.println("filename: " + filename); }
