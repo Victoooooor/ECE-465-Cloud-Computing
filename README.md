@@ -24,7 +24,7 @@ Execution To execute our program, make sure you are in the project folder and ru
 
     To test this distributed network, first run the server class to start the server, then start testing the client:
     > java -cp target\BlockChain_FileSystem.jar ece465.server
-    > java -cp target\BlockChain_FileSystem.jar ece465.client
+    > java -cp target\BlockChain_FileSystem.jar ece465.client_test
     Follow the commanline instruction in client. 
 
 ##MVP4: 
