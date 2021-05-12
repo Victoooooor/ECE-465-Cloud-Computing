@@ -45,4 +45,31 @@ public class store {
 
 
     }
+
+    public int store(String name, InputStream inputStream) throws IOException, SQLException {
+        Connection conn = null;
+
+        try {
+            conn = dbcp.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO files (fname, stored) VALUES (?, ?);");
+            stmt.setString(1,name);
+            stmt.setBinaryStream(2,inputStream);
+            try {
+                stmt.executeUpdate();
+            } catch (SQLException throwables) {
+                System.err.println("Execution Error.");
+                throwables.printStackTrace();
+            }
+            return 1;
+        } catch (SQLException err) {
+            System.err.println("Connection Error.");
+            err.printStackTrace();
+            return -1;
+        }
+        finally {
+            conn.close();
+        }
+
+
+    }
 }

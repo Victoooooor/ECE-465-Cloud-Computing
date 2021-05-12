@@ -33,7 +33,14 @@ public class readJson {
                 return null;
             } else{
                 for (int i = 0; i < fid.size(); i++) {
-                    returnInfo r = new returnInfo(action, fname.getString(i), fid.getInt(i), hash.getString(i),ip.getString(i),port.getInt(i));
+                    returnInfo r;
+                    if(hash.isNull(i)){
+                        r = new returnInfo(action, fname.getString(i), fid.getInt(i), null,ip.getString(i),port.getInt(i));
+                    }
+                    else {
+                        r = new returnInfo(action, fname.getString(i), fid.getInt(i), hash.getString(i),ip.getString(i),port.getInt(i));
+                    }
+
                     result.add(r);
                     r.pprint1();
                 }

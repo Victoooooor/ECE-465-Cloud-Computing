@@ -3,6 +3,7 @@ package ece465.node;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -11,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import ece465.handler.multi.getHash;
 import ece465.handler.single.retrieve;
+import ece465.handler.single.store;
 import ece465.service.Json.*;
 import ece465.service.threaded_store;
 import ece465.util.DBconnection;
@@ -81,7 +83,7 @@ public class server {
 
             get("/search/:filename", (req, res) -> this.handler.search(req, res), gson::toJson);
             get("/fetch/:fid", (req, res) -> this.handler.fetch(req, res), gson::toJson);
-            post("/upload", (req, res) -> this.handler.upload(req, res), gson::toJson);
+            post("/upload/:filename", (req, res) -> this.handler.upload(req, res), gson::toJson);
 
 
 //            try{
@@ -177,6 +179,7 @@ public class server {
                         fromnet.addAll(readJson.read(f));
                     });
                     String fromlocal=searchReturnJsonWriter.generateJson(HAS.get(result), server.getInetAddress().toString().split("/")[1], server.getLocalPort());
+                    //System.out.println(fromlocal);
                     fromnet.addAll(readJson.read(fromlocal));
 //                    out.writeUTF(readJsonWriter.generateJson(fromnet));
 //                    out.flush();
@@ -187,11 +190,13 @@ public class server {
                 return fromnet;
             }
 
-            public String upload(Request request, Response response) throws IOException, ServletException {
+            public String upload(Request request, Response response) throws IOException, ServletException, SQLException {
                 System.out.println("upload called");
                 MultipartConfigElement multipartConfigElement = new MultipartConfigElement("/tmp");
                 request.raw().setAttribute("org.eclipse.jetty.multipartConfig", multipartConfigElement);
                 Part file = request.raw().getPart("file"); //file is name of the upload form
+                store st = new store(DB_con);
+                st.store(request.params("filename"),file.getInputStream());
 
                 response.header("data", "okk");
                 response.body("alright");
