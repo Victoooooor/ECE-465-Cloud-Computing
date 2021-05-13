@@ -21,9 +21,16 @@ do
 	scp -i ${KEY_FILE} -r ${TARG} ${USER}@${host}:~/ | tee -a ${LOGFILE}
 	echo "Copying over ${IPS_FILE} to ${USER}@${host}:~/ ..." | tee -a ${LOGFILE}
 	scp -i ${KEY_FILE} -r ${IPS_FILE} ${USER}@${host}:~/ | tee -a ${LOGFILE}
+    
+    echo "Copying over ${ENV_FILE} to ${USER}@${host}:~/ ..." | tee -a ${LOGFILE}
+    scp -i ${KEY_FILE} -r ${ENV_FILE} ${USER}@${host}:~/ | tee -a ${LOGFILE}
 	echo "Installing JDK to ${USER}@${host}:~/ ..." | tee -a ${LOGFILE}
 	ssh -i ${KEY_FILE} ${USER}@${host} "sudo amazon-linux-extras install java-openjdk11"  | tee -a ${LOGFILE}
-	ssh -i ${KEY_FILE} ${USER}@${host} "mkdir FFTtmp"  | tee -a ${LOGFILE}
+	#ssh -i ${KEY_FILE} ${USER}@${host} "mkdir FFTtmp"  | tee -a ${LOGFILE}
+    #ssh -i ${KEY_FILE} ${USER}@${host} "echo 'hello' | tr -s ' ' '\n' > './selfip.txt'"  | tee -a ${LOGFILE}
+    echo ${host} | tr -s ' ' '\n' > ${SELFIP_FILE}
+    echo "Copying over ${SELFIP_FILE} to ${USER}@${host}:~/ ..." | tee -a ${LOGFILE}
+    scp -i ${KEY_FILE} -r ${SELFIP_FILE} ${USER}@${host}:~/ | tee -a ${LOGFILE}
 done
 
 echo "Done." | tee -a ${LOGFILE}
