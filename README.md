@@ -31,20 +31,18 @@ Execution To execute our program, make sure you are in the project folder and ru
 
 ## AWS Usage
 
-Run
+Set up VPC and EC2
 
     sh ./AWS/create_ec2.sh
-
-to set up the VPC and EC2 instances. To install Java and deploy the compiled program to the instances run
+Deploy and install Java
 
     sh ./AWS/deploy.sh
 
-With Java installed and the binaries deployed, running the binaries can be done with
+Start server
 
     sh ./AWS/run.sh
 
-At this point a backend server IP will be provided, take note of this for usage later.
-Terminating instances once done with usage. This can be done by running
+Terminate EC2 and delete VPC
 
     sh ./AWS/terminate.sh
 
