@@ -18,7 +18,6 @@ public class fetch {
     private Path fname;
 
     private File file;
-    private FileOutputStream output;
     private InputStream input;
 
     public fetch(DBconnection con_in){
@@ -33,7 +32,6 @@ public class fetch {
             if(rs.next()) {
 //                fname = Paths.get(rs.getString("fname"));
 //                file= new File("."+File.separator+"temp"+File.separator+fname.getFileName());
-//                output = new FileOutputStream(file);
 //                System.out.println(fname.getFileName());
                 input = rs.getBinaryStream("stored");
                 out.writeLong(input.available());
@@ -50,9 +48,8 @@ public class fetch {
         } finally {
             try {
                 conn.close();
-                output.close();
                 input.close();
-            } catch (SQLException | IOException e) {}
+            } catch (Exception e) {}
         }
     }
 }
