@@ -126,12 +126,12 @@ public class peerlist {//to implement node to node connection, consensus, centra
             }
         }
         nodelist.add(new peer(ip,port));
-        for (peerlist.peer peer : nodelist) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("saved_list.txt"));){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("saved_list.txt"));){
+            for (peerlist.peer peer : nodelist) {
                 writer.write(peer.ip+":"+peer.port);
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     public ArrayList<String> broadcast (String message,int num_threads){
