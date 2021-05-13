@@ -110,6 +110,7 @@ public class server {
                             out.flush();
                             break allread;
                         case 4://broadcast message
+                            System.out.println("peers.nodelist.size() = "+peers.nodelist.size());
                             peers.broadcastbk(fromclient, 0);
                             if(peers.nodelist.size() < 32) {
                                 peers.register(read.get(0).ip, read.get(0).port);

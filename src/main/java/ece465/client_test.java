@@ -84,7 +84,7 @@ public class client_test {
                         String ip = scanner1.nextLine();
                         System.out.println("Please enter a port: ");
                         Integer port = scanner1.nextInt();
-                        broadcast_result = c.sendbk(new Socket(ip, port), broadcastMsgJsonWriter.generateJson(ip, port));
+                        broadcast_result = c.sendbk(new Socket(ip, port), broadcastMsgJsonWriter.generateJson("2.tcp.ngrok.io", 12466));
                     } catch (IOException e){
                         e.printStackTrace();
                     }
