@@ -3,6 +3,7 @@ package ece465.service.Json;
 import javax.json.Json;
 import javax.json.JsonObject;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class readJsonWriter {
     public static String generateJson(ArrayList<readJson.returnInfo> tostring){
@@ -35,6 +36,7 @@ public class readJsonWriter {
             ports.add(f.port);
         });
         JsonObject obj = Json.createObjectBuilder()
+                .add("requestID", UUID.randomUUID().toString())
                 .add("action", Json.createObjectBuilder()
                         .add("action", act))
                 .add("parameter", Json.createObjectBuilder()

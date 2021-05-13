@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import ece465.handler.multi.getHash;
 import ece465.handler.single.retrieve;
@@ -17,6 +19,7 @@ public class server {
     private DBconnection DB_con;
     private retrieve RT;
     private ConcurrentLinkedQueue<fileInfo> result;
+    private ConcurrentLinkedQueue<String> requestID_queue;
     private getHash HAS;
     private peerlist peers;
     public server(int portnum){
@@ -26,6 +29,7 @@ public class server {
             RT = new retrieve(DB_con);
             HAS = new getHash(DB_con);
             peers=new peerlist();
+            requestID_queue = new ConcurrentLinkedQueue<>();
         } catch (IOException e) {
             System.err.println("Server port non available: "+portnum);
             e.printStackTrace();
@@ -36,13 +40,12 @@ public class server {
         private Socket client;
         private DataInputStream in = null;
         private DataOutputStream out = null;
-
         public client_handler(Socket client){
             this.client=client;
         }
         @Override
         public void run() {
-
+            requestID_queue.clear();
             try{
                 in = new DataInputStream(new BufferedInputStream(client.getInputStream()));
                 out = new DataOutputStream(new BufferedOutputStream(client.getOutputStream()));
@@ -57,6 +60,21 @@ public class server {
                 ArrayList<readJson.returnInfo> read = readJson.read(fromclient);
                 allread:for(readJson.returnInfo Info:read) {
                     System.out.println(Info.action);
+                    synchronized (requestID_queue){
+                        if(!requestID_queue.contains(Info.requestID)){
+                            if(requestID_queue.size() < 128){
+                                requestID_queue.add(Info.requestID);
+                            } else{
+                                synchronized (requestID_queue) {
+                                    requestID_queue.poll();
+                                    requestID_queue.add(Info.requestID);
+                                }
+                            }
+                        }else {
+                            continue;
+                        }
+                    }
+
                     switch (Info.action) {
                         case 0://search by filename
                             System.out.println("Search file: " + Info.filename);

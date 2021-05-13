@@ -6,6 +6,7 @@ import ece465.util.fileInfo;
 import javax.json.Json;
 import javax.json.JsonObject;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class searchReturnJsonWriter {
@@ -24,6 +25,7 @@ public class searchReturnJsonWriter {
             ports.add(port);
         });
         JsonObject obj = Json.createObjectBuilder()
+                .add("requestID", UUID.randomUUID().toString())
                 .add("action", Json.createObjectBuilder()
                         .add("action", "search_return"))
                 .add("parameter", Json.createObjectBuilder()

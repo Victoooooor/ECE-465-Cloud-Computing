@@ -5,11 +5,13 @@ import ece465.util.fileInfo;
 import javax.json.Json;
 import javax.json.JsonObject;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class fetchJsonWriter {
     public static String generateJson(readJson.returnInfo input){
 
         JsonObject obj = Json.createObjectBuilder()
+                .add("requestID", UUID.randomUUID().toString())
                 .add("action", Json.createObjectBuilder()
                         .add("action", "fetch"))
                 .add("parameter", Json.createObjectBuilder()
