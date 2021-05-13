@@ -9,8 +9,28 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class peerlist {//to implement node to node connection, consensus, central node lookup
     public ArrayList<peer> nodelist;
+    String selfip=null;
+    int selfport=0;
     public peerlist(ArrayList<peer> copy){
         this.nodelist=copy;
+        File ff=new File("selfip.txt");
+        try(FileReader fr=new FileReader(ff); BufferedReader br=new BufferedReader(fr);){
+            StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
+            String line=br.readLine();
+            String[] lines=line.split(":");
+            selfip=lines[0];
+            if(lines.length>1){
+                selfport=Integer.parseInt(lines[1]);
+            }
+            else{
+                selfport=4567;
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public peerlist(){
         this.nodelist=new ArrayList<>();
@@ -89,8 +109,15 @@ public class peerlist {//to implement node to node connection, consensus, centra
     }
 
     public void register(String ip, Integer port){
-        if(ip.equals("0.0.0.0")){
+        if(ip.equals("0.0.0.0")||ip.equals(selfip)){
             return;
+        }
+        for(int i=0;i<nodelist.size();i++){
+            if(ip.equals(nodelist.get(i).ip)){
+                if(port!=nodelist.get(i).port)
+                    nodelist.get(i).port=port;//update to new port
+                return;
+            }
         }
         nodelist.add(new peer(ip,port));
         for (peerlist.peer peer : nodelist) {
