@@ -192,6 +192,7 @@ public class peerlist {//to implement node to node connection, consensus, centra
             System.out.println("con_list.size() = " + con_list.size());
             peer current;
             while((current=con_list.poll())!=null){
+                System.out.println(current.ip+':'+current.port);
                 try(Socket s=new Socket(current.ip, current.port);
                     DataOutputStream out = new DataOutputStream(new BufferedOutputStream(s.getOutputStream()))){
 

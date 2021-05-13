@@ -107,9 +107,9 @@ public class client_test {
                         Scanner scanner1 = new Scanner(System.in);
                         System.out.println("Please enter an IP: ");
                         String ip = scanner1.nextLine();
-                        System.out.println("Please enter a port: ");
-                        Integer port = scanner1.nextInt();
-                        broadcast_result = c.sendbk(new Socket(ip, port), broadcastMsgJsonWriter.generateJson(selfip,selfport));//"8.tcp.ngrok.io", 17961
+
+                        System.out.println(broadcastMsgJsonWriter.generateJson(selfip,selfport));
+                        broadcast_result = c.sendbk(new Socket(ip.split(":")[0], Integer.parseInt(ip.split(":")[1])), broadcastMsgJsonWriter.generateJson(selfip,selfport));//"8.tcp.ngrok.io", 17961
                     } catch (IOException e){
                         e.printStackTrace();
                     }
