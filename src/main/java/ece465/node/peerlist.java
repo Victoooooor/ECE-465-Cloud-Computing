@@ -91,7 +91,7 @@ public class peerlist {//to implement node to node connection, consensus, centra
                     out.flush();
                     long start = System.currentTimeMillis();
                     long finish = System.currentTimeMillis();
-                    while(finish - start<10000){//timeout in 10s
+                    while(finish - start<30000){//timeout in 10s
                         if(in.available()>0){
                             results.add(in.readUTF());
                             System.err.println("adding");
