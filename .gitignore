@@ -39,3 +39,5 @@ dependency-reduced-pom.xml
 *.pdf
 
 .env
+saved_list.txt
+selfip.txt
