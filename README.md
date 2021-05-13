@@ -11,6 +11,7 @@ Pre-requsite:
 
     - MariaDB (version 10.5 or newer) 
     - Maven
+    - AWS CLI
 
 Database setup: Make sure you cd into the project folder
 
