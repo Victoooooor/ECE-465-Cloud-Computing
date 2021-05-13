@@ -3,7 +3,7 @@ import ece465.node.*;
 import ece465.service.Json.*;
 
 import java.awt.print.PrinterGraphics;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -14,6 +14,29 @@ public class client_test {
         ece465.node.client c= null;
         c = new ece465.node.client();
         boolean exit = false;
+        String selfip = null;
+        int selfport = 0;
+        File ff=new File("selfip.txt");
+        try(FileReader fr=new FileReader(ff); BufferedReader br=new BufferedReader(fr);){
+            StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
+            String line=br.readLine();
+            String[] lines=line.split(":");
+            selfip=lines[0];
+            if(lines.length>1){
+                selfport=Integer.parseInt(lines[1]);
+            }
+            else{
+                selfport=4567;
+            }
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (selfip==null||selfport==0){
+            System.err.println("No selfip.txt found, exit");
+            return;
+        }
         while(!exit) {
             String search_result = null;
             String broadcast_result = null;
@@ -40,7 +63,7 @@ public class client_test {
                     }
                     System.out.println(listing);
                     try {
-                        c.send(new Socket("8.tcp.ngrok.io", 17961), storerequestWriter.generateJson(listing));
+                        c.send(new Socket("0.0.0.0",4567), storerequestWriter.generateJson(listing));
                     } catch (IOException e){
                         e.printStackTrace();
                     }
@@ -51,28 +74,30 @@ public class client_test {
                     String searchword = scanner.nextLine();
                     System.out.println(searchword);
                     try {//"3.90.176.115",4666
-                        search_result = c.send(new Socket("3.90.176.115",4666), searchJsonWriter.generateJson(searchword));
+                        search_result = c.send(new Socket("0.0.0.0",4567), searchJsonWriter.generateJson(searchword));
                         System.out.println("search result: " + search_result);
                         ArrayList<readJson.returnInfo> returned = readJson.read(search_result);
+                        if(returned.size()>0){
+                            System.out.println("Pleas select the files you want to retrieve, " +
+                                    "separated by newline character (one file per line), press enter again to finish.");
+                            for (int i = 0; i < returned.size(); i++) {
+                                System.out.println((i + 1) + " - " + returned.get(i).filename);
+                            }
+                            String fn;
+                            ArrayList<readJson.returnInfo> fetching = new ArrayList<>();
+                            fn = scanner.nextLine();
+                            int n = Integer.parseInt(fn);
+                            fetching.add(returned.get(n-1));
+                            while (!(fn = scanner.nextLine()).isBlank()) {
+                                n = Integer.parseInt(fn);
+                                fetching.add(returned.get(n - 1));
+                            }
+                            for(readJson.returnInfo a: fetching){
+                                System.out.println(a.filename);
+                            }
+                            c.receive(fetching, 0);
+                        }
 
-                        System.out.println("Pleas select the files you want to retrieve, " +
-                                "separated by newline character (one file per line), press enter again to finish.");
-                        for (int i = 0; i < returned.size(); i++) {
-                            System.out.println((i + 1) + " - " + returned.get(i).filename);
-                        }
-                        String fn;
-                        ArrayList<readJson.returnInfo> fetching = new ArrayList<>();
-                        fn = scanner.nextLine();
-                        int n = Integer.parseInt(fn);
-                        fetching.add(returned.get(n-1));
-                        while (!(fn = scanner.nextLine()).isBlank()) {
-                            n = Integer.parseInt(fn);
-                            fetching.add(returned.get(n - 1));
-                        }
-                        for(readJson.returnInfo a: fetching){
-                            System.out.println(a.filename);
-                        }
-                        c.receive(fetching, 0);
                     } catch (IOException e){
                         e.printStackTrace();
                     }
@@ -84,7 +109,7 @@ public class client_test {
                         String ip = scanner1.nextLine();
                         System.out.println("Please enter a port: ");
                         Integer port = scanner1.nextInt();
-                        broadcast_result = c.sendbk(new Socket(ip, port), broadcastMsgJsonWriter.generateJson("8.tcp.ngrok.io", 17961));
+                        broadcast_result = c.sendbk(new Socket(ip, port), broadcastMsgJsonWriter.generateJson(selfip,selfport));//"8.tcp.ngrok.io", 17961
                     } catch (IOException e){
                         e.printStackTrace();
                     }

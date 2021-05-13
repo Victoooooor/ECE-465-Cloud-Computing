@@ -22,6 +22,8 @@ public class server {
     private ConcurrentLinkedQueue<String> requestID_queue;
     private getHash HAS;
     private peerlist peers;
+    private String selfip;
+    private int selfport;
     public server(int portnum){
         try {
             server = new ServerSocket(portnum);
@@ -32,6 +34,24 @@ public class server {
             requestID_queue = new ConcurrentLinkedQueue<>();
         } catch (IOException e) {
             System.err.println("Server port non available: "+portnum);
+            e.printStackTrace();
+        }
+        File ff=new File("selfip.txt");
+        try(FileReader fr=new FileReader(ff); BufferedReader br=new BufferedReader(fr);){
+            StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
+            String line=br.readLine();
+            String[] lines=line.split(":");
+            selfip=lines[0];
+            if(lines.length>1){
+                selfport=Integer.parseInt(lines[1]);
+            }
+            else{
+                selfport=4567;
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -87,7 +107,7 @@ public class server {
                                 netresult.forEach(f->{
                                     fromnet.addAll(readJson.read(f));
                                 });
-                                String fromlocal=searchReturnJsonWriter.generateJson(HAS.get(result), server.getInetAddress().toString().split("/")[1], server.getLocalPort());
+                                String fromlocal=searchReturnJsonWriter.generateJson(HAS.get(result), selfip,selfport);
                                 fromnet.addAll(readJson.read(fromlocal));
                                 out.writeUTF(readJsonWriter.generateJson(fromnet));
                                 out.flush();
@@ -114,7 +134,7 @@ public class server {
                             peers.broadcastbk(fromclient, 0);
                             if(peers.nodelist.size() < 32) {
                                 peers.register(read.get(0).ip, read.get(0).port);
-                                String message = returnMsgJsonWriter.generateJson(server.getInetAddress().toString().split("/")[1], server.getLocalPort());
+                                String message = returnMsgJsonWriter.generateJson(selfip,selfport);
                                 peers.returnMsg(read.get(0).ip, read.get(0).port,message);
                             }
                             break;
@@ -122,8 +142,8 @@ public class server {
                             if(peers.nodelist.size() < 8) {
                                 peers.register(read.get(0).ip, read.get(0).port);
                             }else{
-                                String message = confirmationMsgJsonWriter.generateJson(server.getInetAddress().toString().split("/")[1], server.getLocalPort());
-                                peers.confirmationMsg(server.getInetAddress().toString().split("/")[1], server.getLocalPort(),message);
+                                String message = confirmationMsgJsonWriter.generateJson(selfip,selfport);
+                                peers.confirmationMsg(read.get(0).ip,read.get(0).port,message);
                             }
                             break;
                         case 6://delete

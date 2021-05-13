@@ -100,7 +100,7 @@ public class client_gui extends JPanel implements ActionListener {
             if(searchword!=null){
                 System.out.println(searchword);
                 try {
-                    String search_result = c.send(new Socket("8.tcp.ngrok.io", 17961), searchJsonWriter.generateJson(searchword));
+                    String search_result = c.send(new Socket("0.0.0.0", 4567), searchJsonWriter.generateJson(searchword));
                     System.out.println("search result: " + search_result);
                     ArrayList<readJson.returnInfo> returned = readJson.read(search_result);
                     JTextArea ids=new JTextArea(10,15);

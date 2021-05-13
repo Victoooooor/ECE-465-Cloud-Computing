@@ -33,8 +33,6 @@ public class peerlist {//to implement node to node connection, consensus, centra
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } {
-
         }
 
 

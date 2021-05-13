@@ -30,7 +30,7 @@ public class client {
             while((current=fetch_queue.poll())!=null){
                 filename=Paths.get(current.filename);
                 FF = new File("." + File.separator + "client_temp" + File.separator + filename.getFileName());
-                try(Socket serv=new Socket("8.tcp.ngrok.io", 17961);
+                try(Socket serv=new Socket(current.ip, current.port);
                     DataInputStream server_in = new DataInputStream(new BufferedInputStream(serv.getInputStream()));
                     DataOutputStream server_out = new DataOutputStream(new BufferedOutputStream(serv.getOutputStream()));
                     FileOutputStream savefile=new FileOutputStream(FF)) {
