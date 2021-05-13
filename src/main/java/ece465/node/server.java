@@ -82,15 +82,22 @@ public class server {
                     System.out.println(Info.action);
                     synchronized (requestID_queue){
                         if(!requestID_queue.contains(Info.requestID)){
+                            System.err.println("Different Request");
                             if(requestID_queue.size() < 128){
                                 requestID_queue.add(Info.requestID);
                             } else{
+
                                 synchronized (requestID_queue) {
                                     requestID_queue.poll();
                                     requestID_queue.add(Info.requestID);
                                 }
                             }
                         }else {
+                            System.err.println("Same request, ignored!!!!!!");
+                            if (Info.action==0){
+                                out.writeUTF("repeated");
+                                out.flush();
+                            }
                             return;
                         }
                     }

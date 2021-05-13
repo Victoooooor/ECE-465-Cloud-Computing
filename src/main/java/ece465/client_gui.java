@@ -82,7 +82,7 @@ public class client_gui extends JPanel implements ActionListener {
                     log.append("Adding file to database: " + file[i].getAbsolutePath() + "." + newline);
                     listing.add(file[i].getAbsolutePath());
                     try {
-                        c.send(new Socket("0.0.0.0", 4666), storerequestWriter.generateJson(listing));
+                        c.send(new Socket("0.0.0.0", 4567), storerequestWriter.generateJson(listing));
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
