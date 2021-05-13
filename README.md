@@ -7,7 +7,10 @@ Cooper Union ECE-465 Spring 2021
 
     When a new node server is added to this network, it will need an entry node IP address. The new node is registered to the entry point and its registration will be broadcasted to other nodes (to be implemented) so that the new node is connected to more than one nodes for redundancy purposes. 
 
-Pre-requsite: - MariaDB (version 10.5 or newer) - Maven
+Pre-requsite: 
+
+    - MariaDB (version 10.5 or newer) 
+    - Maven
 
 Database setup: Make sure you cd into the project folder
 
