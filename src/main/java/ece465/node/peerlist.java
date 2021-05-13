@@ -14,7 +14,35 @@ public class peerlist {//to implement node to node connection, consensus, centra
     }
     public peerlist(){
         this.nodelist=new ArrayList<>();
+        File ff=new File("saved_list.txt");
+        if(!ff.exists()){
+            System.err.println("No peerlist file, nothing loaded");
+            return;
+        }
+        try(FileReader fr=new FileReader(ff); BufferedReader br=new BufferedReader(fr);){
+            StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
+            String line;
+            String[] lines;
+            while((line=br.readLine())!=null)
+            {
+                lines=line.split(":");
+                nodelist.add(new peer(lines[0],Integer.parseInt(lines[1])));
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } {
+
+        }
+
+
+          //reads the file
+          //creates a buffering character input stream
+
     }
+
     private class peer{
         protected String ip;
         protected Integer port;
@@ -68,7 +96,11 @@ public class peerlist {//to implement node to node connection, consensus, centra
         }
         nodelist.add(new peer(ip,port));
         for (peerlist.peer peer : nodelist) {
-            System.out.println(peer.ip+":"+peer.port);
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("saved_list.txt"));){
+                writer.write(peer.ip+":"+peer.port);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public ArrayList<String> broadcast (String message,int num_threads){
@@ -140,6 +172,13 @@ public class peerlist {//to implement node to node connection, consensus, centra
     public void delete (String ip, Integer port){
         peer p = new peer(ip, port);
         nodelist.remove(p);
+        for (peerlist.peer peer : nodelist) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("saved_list.txt"));){
+                writer.write(peer.ip+":"+peer.port);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
     private class subclient_bk implements Runnable{
         ConcurrentLinkedQueue<peer> con_list;
