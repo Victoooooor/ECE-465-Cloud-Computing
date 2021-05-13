@@ -1,3 +1,4 @@
+# Distributed File System
 Cooper Union ECE-465 Spring 2021
 
 ![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/ECE465_MVP4.png?raw=true)
@@ -6,7 +7,11 @@ Cooper Union ECE-465 Spring 2021
 
     When a new node server is added to this network, it will need an entry node IP address. The new node is registered to the entry point and its registration will be broadcasted to other nodes (to be implemented) so that the new node is connected to more than one nodes for redundancy purposes. 
 
-Pre-requsite: - MariaDB (version 10.5 or newer) - Maven
+Pre-requsite: 
+
+    - MariaDB (version 10.5 or newer) 
+    - Maven
+    - AWS CLI
 
 Database setup: Make sure you cd into the project folder
 
@@ -27,5 +32,28 @@ Execution To execute our program, make sure you are in the project folder and ru
     > java -cp target\BlockChain_FileSystem.jar ece465.client_test
     Follow the commanline instruction in client. 
 
-##MVP4: 
-    improved peer nodes (client and server), implemented peerlist and broadcasting functionality.
+
+## AWS Usage
+
+Set up VPC and EC2
+
+    sh ./AWS/create_ec2.sh
+Deploy and install Java
+
+    sh ./AWS/deploy.sh
+
+Start server
+
+    sh ./AWS/run.sh
+
+Terminate EC2 and delete VPC
+
+    sh ./AWS/terminate.sh
+
+
+
+
+## Authors
+
+- Allister Liu
+- Victor Zhang
