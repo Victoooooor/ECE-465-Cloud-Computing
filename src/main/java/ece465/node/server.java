@@ -95,6 +95,7 @@ public class server {
                         }else {
                             System.err.println("Same request, ignored!!!!!!");
                             if (Info.action==0){
+                                System.err.println("Is search, return repeated");
                                 out.writeUTF("repeated");
                                 out.flush();
                             }
@@ -111,9 +112,11 @@ public class server {
                                 System.out.println("Search Done");
                                 ArrayList<String> netresult=peers.broadcast(fromclient,0);
                                 ArrayList<readJson.returnInfo> fromnet=new ArrayList<>();
-                                netresult.forEach(f->{
-                                    fromnet.addAll(readJson.read(f));
-                                });
+                                if(netresult.size()>0) {
+                                    netresult.forEach(f -> {
+                                        fromnet.addAll(readJson.read(f));
+                                    });
+                                }
                                 String fromlocal=searchReturnJsonWriter.generateJson(HAS.get(result), selfip,selfport);
                                 fromnet.addAll(readJson.read(fromlocal));
                                 out.writeUTF(readJsonWriter.generateJson(fromnet));
