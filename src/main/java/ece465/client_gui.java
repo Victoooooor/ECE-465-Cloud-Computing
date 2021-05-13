@@ -1,4 +1,5 @@
 package ece465;
+import ece465.service.Json.broadcastMsgJsonWriter;
 import ece465.service.Json.readJson;
 import ece465.service.Json.searchJsonWriter;
 import ece465.service.Json.storerequestWriter;
@@ -14,12 +15,13 @@ import javax.swing.filechooser.*;
 
 public class client_gui extends JPanel implements ActionListener {
     static private final String newline = "\n";
-    JButton shareButton, searchButton;
+    private static String selfip=null;
+    private static int selfport=0;
+    JButton addButton,shareButton, searchButton;
     JTextArea log;
     JFileChooser fc;
     ArrayList<String> listing;
     ece465.node.client c= null;
-
     public client_gui() {
         super(new BorderLayout());
 
@@ -45,6 +47,8 @@ public class client_gui extends JPanel implements ActionListener {
         fc.setMultiSelectionEnabled(true);
         //Create the open button.  We use the image from the JLF
         //Graphics Repository (but we extracted it from the jar).
+        addButton=new JButton("Add Request");
+        addButton.addActionListener(this);
         shareButton = new JButton("Share File",
                 createImageIcon("share.png"));
         shareButton.addActionListener(this);
@@ -57,6 +61,7 @@ public class client_gui extends JPanel implements ActionListener {
 
         //For layout purposes, put the buttons in a separate panel
         JPanel buttonPanel = new JPanel(); //use FlowLayout
+        buttonPanel.add(addButton);
         buttonPanel.add(shareButton);
         buttonPanel.add(searchButton);
 
@@ -70,7 +75,20 @@ public class client_gui extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         //Handle open button action.
-        if (e.getSource() == shareButton) {
+        if (e.getSource() == addButton) {
+            String ip=JOptionPane.showInputDialog("Enter Destined IP:Port");
+            String[] ips=ip.split(":");
+            if(ips.length!=2){
+                log.append("Incorrect IP:Port Format, Returned");
+                return;
+            }
+            try {
+                c.sendbk(new Socket(ips[0], Integer.parseInt(ips[1])), broadcastMsgJsonWriter.generateJson(selfip,selfport));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+        else if (e.getSource() == shareButton) {
             int returnVal = fc.showOpenDialog(client_gui.this);
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -159,6 +177,7 @@ public class client_gui extends JPanel implements ActionListener {
             }
 
         }
+
         log.setText(null);
     }
 
@@ -180,7 +199,7 @@ public class client_gui extends JPanel implements ActionListener {
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame= new JFrame("FileChooserDemo");
+        JFrame frame= new JFrame("FileSystem");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Add content to the window.
@@ -194,6 +213,27 @@ public class client_gui extends JPanel implements ActionListener {
     public static void main(String[] args) {
         //Schedule a job for the event dispatch thread:
         //creating and showing this application's GUI.
+        File ff=new File("selfip.txt");
+        try(FileReader fr=new FileReader(ff); BufferedReader br=new BufferedReader(fr);){
+            StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
+            String line=br.readLine();
+            String[] lines=line.split(":");
+            selfip=lines[0];
+            if(lines.length>1){
+                selfport=Integer.parseInt(lines[1]);
+            }
+            else{
+                selfport=4567;
+            }
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (selfip==null||selfport==0){
+            System.err.println("No selfip.txt found, exit");
+            return;
+        }
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //Turn off metal's use of bold fonts
