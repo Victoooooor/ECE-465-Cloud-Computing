@@ -11,8 +11,8 @@ public class broadcastMsgJsonWriter {
                 .add("action", Json.createObjectBuilder()
                         .add("action", "broadcast_msg"))
                 .add("parameter", Json.createObjectBuilder()
-                        .add("ip", ip))
-                        .add("port", port).build();
+                        .add("ip", ip)
+                        .add("port", port)).build();
         return obj.toString();
     }
 }

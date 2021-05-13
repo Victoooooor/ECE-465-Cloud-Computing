@@ -71,7 +71,7 @@ public class server {
                                 }
                             }
                         }else {
-                            continue;
+                            return;
                         }
                     }
 
@@ -110,12 +110,12 @@ public class server {
                             out.flush();
                             break allread;
                         case 4://broadcast message
+                            peers.broadcastbk(fromclient, 0);
                             if(peers.nodelist.size() < 32) {
                                 peers.register(read.get(0).ip, read.get(0).port);
                                 String message = returnMsgJsonWriter.generateJson(server.getInetAddress().toString().split("/")[1], server.getLocalPort());
                                 peers.returnMsg(server.getInetAddress().toString().split("/")[1], server.getLocalPort(),message);
                             }
-                            peers.broadcast(fromclient, 0);
                             break;
                         case 5://return message
                             if(peers.nodelist.size() < 8) {

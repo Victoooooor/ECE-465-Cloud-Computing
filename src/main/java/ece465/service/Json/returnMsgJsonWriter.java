@@ -11,8 +11,8 @@ public class returnMsgJsonWriter {
                 .add("action", Json.createObjectBuilder()
                         .add("action", "return_msg"))
                 .add("parameter", Json.createObjectBuilder()
-                        .add("ip", ip))
-                .add("port", port).build();
+                        .add("ip", ip)
+                        .add("port", port)).build();
         return obj.toString();
     }
 }

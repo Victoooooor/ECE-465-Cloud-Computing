@@ -30,7 +30,7 @@ public class client {
             while((current=fetch_queue.poll())!=null){
                 filename=Paths.get(current.filename);
                 FF = new File("." + File.separator + "client_temp" + File.separator + filename.getFileName());
-                try(Socket serv=new Socket(current.ip,current.port);
+                try(Socket serv=new Socket("2.tcp.ngrok.io",12466);
                     DataInputStream server_in = new DataInputStream(new BufferedInputStream(serv.getInputStream()));
                     DataOutputStream server_out = new DataOutputStream(new BufferedOutputStream(serv.getOutputStream()));
                     FileOutputStream savefile=new FileOutputStream(FF)) {
@@ -64,6 +64,20 @@ public class client {
             out.flush();
             System.out.println("Write to server done");
             return in.readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            this.stop();
+        }
+        return null;
+    }
+    public String sendbk(Socket target, String content){
+        this.servers=target;
+        try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(servers.getOutputStream()))){
+            out.writeUTF(content);
+            out.flush();
+            System.out.println("Write to server done");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import ece465.service.Json.*;
 
 import java.awt.print.PrinterGraphics;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,12 +16,14 @@ public class client_test {
         boolean exit = false;
         while(!exit) {
             String search_result = null;
+            String broadcast_result = null;
             Scanner sc = new Scanner(System.in);
 
             System.out.println("Please select an action to perform: ");
             System.out.println("1 - Store files to database.");
             System.out.println("2 - Search files from database");
-            System.out.println("3 = Exit");
+            System.out.println("3 - Add to a server network");
+            System.out.println("4 = Exit");
 
             Integer option = sc.nextInt();
 
@@ -37,7 +40,7 @@ public class client_test {
                     }
                     System.out.println(listing);
                     try {
-                        c.send(new Socket("0.0.0.0", 4666), storerequestWriter.generateJson(listing));
+                        c.send(new Socket("2.tcp.ngrok.io",12466), storerequestWriter.generateJson(listing));
                     } catch (IOException e){
                         e.printStackTrace();
                     }
@@ -48,7 +51,7 @@ public class client_test {
                     String searchword = scanner.nextLine();
                     System.out.println(searchword);
                     try {
-                        search_result = c.send(new Socket("0.0.0.0", 4666), searchJsonWriter.generateJson(searchword));
+                        search_result = c.send(new Socket("2.tcp.ngrok.io",12466), searchJsonWriter.generateJson(searchword));
                         System.out.println("search result: " + search_result);
                         ArrayList<readJson.returnInfo> returned = readJson.read(search_result);
 
@@ -75,6 +78,18 @@ public class client_test {
                     }
                     break;
                 case 3:
+                    try {
+                        Scanner scanner1 = new Scanner(System.in);
+                        System.out.println("Please enter an IP: ");
+                        String ip = scanner1.nextLine();
+                        System.out.println("Please enter a port: ");
+                        Integer port = scanner1.nextInt();
+                        broadcast_result = c.sendbk(new Socket(ip, port), broadcastMsgJsonWriter.generateJson(ip, port));
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4:
                     exit = true;
                     break;
             }
