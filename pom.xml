@@ -51,7 +51,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.cooper.ece465.concurrent.bqProdConsumerService</mainClass>
+                            <mainClass>edu.cooper.ece465.server</mainClass>
                         </manifest>
                     </archive>
                     <filters>
