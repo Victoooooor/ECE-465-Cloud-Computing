@@ -27,3 +27,6 @@ PROG="./target/BlockChain_FileSystem.jar"
 CLASSPATH="ece465.server"
 
 IPS_FILE="./ips.txt"
+SELFIP_FILE="./selfip.txt"
+ENV_FILE="./.env"
+

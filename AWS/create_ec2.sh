@@ -16,6 +16,7 @@ echo "Set the security group for ingress from the Internet" | tee -a ${LOGFILE}
 aws ec2 authorize-security-group-ingress ${PREAMBLE} --group-id ${SEC_GROUP_ID} --protocol tcp --port 22 --cidr 0.0.0.0/0 | tee -a ${LOGFILE}
 aws ec2 authorize-security-group-ingress ${PREAMBLE} --group-id ${SEC_GROUP_ID} --protocol tcp --port 4567 --cidr 0.0.0.0/0 | tee -a ${LOGFILE}
 aws ec2 authorize-security-group-ingress ${PREAMBLE} --group-id ${SEC_GROUP_ID} --protocol tcp --port 6969 --cidr 0.0.0.0/0 | tee -a ${LOGFILE}
+aws ec2 authorize-security-group-ingress ${PREAMBLE} --group-id ${SEC_GROUP_ID} --protocol tcp --port 4666 --cidr 0.0.0.0/0 | tee -a ${LOGFILE}
 
 # create the instance(s) with tags
 echo "Create ${INSTANCES_COUNT} instances" | tee -a ${LOGFILE}
