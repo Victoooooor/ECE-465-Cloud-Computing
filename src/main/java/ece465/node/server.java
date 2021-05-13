@@ -45,7 +45,7 @@ public class server {
         }
         @Override
         public void run() {
-            requestID_queue.clear();
+
             try{
                 in = new DataInputStream(new BufferedInputStream(client.getInputStream()));
                 out = new DataOutputStream(new BufferedOutputStream(client.getOutputStream()));

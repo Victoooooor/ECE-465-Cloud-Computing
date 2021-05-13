@@ -43,9 +43,19 @@ public class peerlist {//to implement node to node connection, consensus, centra
 
                     out.writeUTF(this.message);
                     out.flush();
-                    results.add(in.readUTF());
+                    long start = System.currentTimeMillis();
+                    long finish = System.currentTimeMillis();
+                    while(finish - start<10000){//timeout in 10s
+                        if(in.available()>0){
+                            results.add(in.readUTF());
+                            System.err.println("adding");
+                            break;
+                        }
+                        Thread.sleep(2);
+                        finish=System.currentTimeMillis();
+                    }
 
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -53,6 +63,9 @@ public class peerlist {//to implement node to node connection, consensus, centra
     }
 
     public void register(String ip, Integer port){
+        if(ip.equals("0.0.0.0")){
+            return;
+        }
         nodelist.add(new peer(ip,port));
         for (peerlist.peer peer : nodelist) {
             System.out.println(peer.ip+":"+peer.port);
