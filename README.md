@@ -1,3 +1,4 @@
+# Distributed File System
 Cooper Union ECE-465 Spring 2021
 
 ![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/ECE465_MVP4.png?raw=true)
@@ -27,5 +28,30 @@ Execution To execute our program, make sure you are in the project folder and ru
     > java -cp target\BlockChain_FileSystem.jar ece465.client_test
     Follow the commanline instruction in client. 
 
-##MVP4: 
-    improved peer nodes (client and server), implemented peerlist and broadcasting functionality.
+
+## AWS Usage
+
+Run
+
+    sh ./AWS/create_ec2.sh
+
+to set up the VPC and EC2 instances. To install Java and deploy the compiled program to the instances run
+
+    sh ./AWS/deploy.sh
+
+With Java installed and the binaries deployed, running the binaries can be done with
+
+    sh ./AWS/run.sh
+
+At this point a backend server IP will be provided, take note of this for usage later.
+Terminating instances once done with usage. This can be done by running
+
+    sh ./AWS/terminate.sh
+
+
+
+
+## Authors
+
+- Allister Liu
+- Victor Zhang
