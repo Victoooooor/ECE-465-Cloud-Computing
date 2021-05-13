@@ -50,8 +50,8 @@ public class client_test {
                     System.out.println("Please enter a search word: ");
                     String searchword = scanner.nextLine();
                     System.out.println(searchword);
-                    try {
-                        search_result = c.send(new Socket("8.tcp.ngrok.io", 17961), searchJsonWriter.generateJson(searchword));
+                    try {//"3.90.176.115",4666
+                        search_result = c.send(new Socket("3.90.176.115",4666), searchJsonWriter.generateJson(searchword));
                         System.out.println("search result: " + search_result);
                         ArrayList<readJson.returnInfo> returned = readJson.read(search_result);
 
