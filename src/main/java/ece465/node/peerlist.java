@@ -95,7 +95,7 @@ public class peerlist {//to implement node to node connection, consensus, centra
                         if(in.available()>0){
                             String my_buf=in.readUTF();
                             System.out.println(my_buf);
-                            if(my_buf.contains("repeated")){
+                            if(my_buf.equals("repeated")){
                                 System.err.println("repeated looping broadcast detected!!!!!!!!!");
                                 return;
                             }
