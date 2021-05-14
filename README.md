@@ -53,7 +53,8 @@ Cooper Union ECE-465 Spring 2021
     ./ngrok tcp 4567        (on MacOS and Linux)
     ngrok.exe tcp 4567      (on Windows)
     
-  Then you will see a similar window like this![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/ECE465_MVP4.png?raw=true)
+  Then you will see a similar window like this![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/frontend/ngrok.png?raw=true)
+  
   
   #### **Please copy the portion of forwarding URL in the format of** 
   
@@ -61,6 +62,7 @@ Cooper Union ECE-465 Spring 2021
     
   #### **into ./selfip.txt (create if not exist)**
   
+
 ### Run:
 
   If you are on a MacOS machine, run the following script:
