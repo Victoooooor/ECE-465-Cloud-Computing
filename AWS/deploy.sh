@@ -13,6 +13,7 @@ echo "Running deploy.sh at ${NOW}" | tee -a ${LOGFILE}
 INSTANCES_IPS=$(aws ec2 describe-instances ${PREAMBLE} --filters Name=instance-state-name,Values=running Name=tag:${APP_TAG_NAME},Values=${APP_TAG_VALUE} --query 'Reservations[*].Instances[*].PublicIpAddress' --output text | tr -s '\t' ' ')
 echo "Public IP addresses: ${INSTANCES_IPS}" | tee -a ${LOGFILE}
 
+i=0
 for host in ${INSTANCES_IPS}
 do
   # adds host to trusted ssh hosts so that it does not wait on request
@@ -31,6 +32,10 @@ do
     echo ${host} | tr -s ' ' '\n' > ${SELFIP_FILE}
     echo "Copying over ${SELFIP_FILE} to ${USER}@${host}:~/ ..." | tee -a ${LOGFILE}
     scp -i ${KEY_FILE} -r ${SELFIP_FILE} ${USER}@${host}:~/ | tee -a ${LOGFILE}
+    echo "DB_PASS=PASSWORD\nDB_URL=jdbc:mysql://${DB_ENDPOINTS[$i]}/ece465" > ${ENV_FILE}
+    echo "Copying over ${ENV_FILE} to ${USER}@${host}:~/ ..." | tee -a ${LOGFILE}
+    scp -i ${KEY_FILE} -r ${ENV_FILE} ${USER}@${host}:~/ | tee -a ${LOGFILE}
+    ((i=i+1))
 done
 
 echo "Done." | tee -a ${LOGFILE}

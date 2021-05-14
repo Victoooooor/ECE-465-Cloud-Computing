@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 echo "Checking if MySQL server version..."
 mysql --version
 
@@ -6,7 +7,7 @@ mysql --version
 echo "Setting up tables..."
 
 echo "Please enter the root password for mySQL server"
-mysql -u root -p < sql_script\a.sql
+mysql -u root -p < sql_script/a.sql
 
 echo "Done."
 
@@ -14,6 +15,6 @@ echo "Done."
 echo "Granting privileges..."
 
 echo "Please enter the root password for mySQL server"
-mysql -u root -p < sql_script\b.sql
+mysql -u root -p < sql_script/b.sql
 
 echo "Done."

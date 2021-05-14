@@ -29,3 +29,13 @@ echo "Instances IDs: ${INSTANCES_IDS}"
 
 SEC_GROUP_ID=$(aws ec2 describe-security-groups ${PREAMBLE} --filters Name=tag:${APP_TAG_NAME},Values=${APP_TAG_VALUE} --query 'SecurityGroups[*].GroupId' --output text)
 echo "SEC_GROUP_ID=${SEC_GROUP_ID}"
+
+declare -a DB_ENDPOINTS
+
+for i in $(seq 1 1 ${INSTANCES_COUNT});
+do
+    DB_ENDPOINT=$(aws rds describe-db-instances \
+    --db-instance-identifier "${DB_NAME}-${i}" | jq '.DBInstances[].Endpoint.Address' | tr -d '"')
+    DB_ENDPOINTS+=(${DB_ENDPOINT})
+done
+echo "Database Endpoints: ${DB_ENDPOINTS}"

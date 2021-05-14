@@ -22,6 +22,14 @@ INSTANCES_COUNT=2
 INSTANCE_TYPE=t2.micro
 USER=ec2-user
 
+# for RDS MariaDB
+DB_NAME="ece465"
+DB_ENGINE="mariadb"
+DB_INSTANCE_CLASS="db.t3.micro"
+DB_ENGINE_VERSION="10.4.13"
+DB_PARAMETER_GROUP_NAME="mydbparametergroup"
+DB_PARAMETER_GROUP_FAMILY="mariadb10.4"
+
 TARG="./target"
 PROG="./target/BlockChain_FileSystem.jar"
 CLASSPATH="ece465.server"
