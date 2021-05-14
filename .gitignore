@@ -41,3 +41,4 @@ dependency-reduced-pom.xml
 .env
 saved_list.txt
 selfip.txt
+app.version
