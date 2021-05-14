@@ -77,11 +77,15 @@ Cooper Union ECE-465 Spring 2021
 
 ## AWS Usage
 
-- Set up VPC and EC2
+- Create VPC and EC2
 
       sh ./AWS/create_ec2.sh
+      
+- Create MariaDB in RDS
+
+      sh ./AWS/create_rds.sh
         
-- Deploy and install Java
+- Deploy the program and install Java onto each EC2 instance, and make sure each EC2 instance is linked to a RDS database
 
       sh ./AWS/deploy.sh
 
