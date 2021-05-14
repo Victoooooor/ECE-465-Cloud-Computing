@@ -13,7 +13,11 @@ Pre-requsite:
     - Maven
     - AWS CLI
 
-Database setup: Make sure you cd into the project folder
+Local database setup:
+  
+  Make sure your mySQL server is running.
+  
+  If you know your root user password for mySQL server, run the following script and type in your password when asked.
 
     To setup the test databse, run
     > mysql -u root -p < sql_script\a.sql
