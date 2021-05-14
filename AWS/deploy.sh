@@ -35,6 +35,10 @@ do
     echo "DB_PASS=PASSWORD\nDB_URL=jdbc:mysql://${DB_ENDPOINTS[$i]}/ece465" > ${ENV_FILE}
     echo "Copying over ${ENV_FILE} to ${USER}@${host}:~/ ..." | tee -a ${LOGFILE}
     scp -i ${KEY_FILE} -r ${ENV_FILE} ${USER}@${host}:~/ | tee -a ${LOGFILE}
+    
+    echo "Setting up mariadb on RDS" | tee -a ${LOGFILE}
+    mysql -h ${DB_ENDPOINTS[$i]} -u root --password=PASSWORD < ./sql_script/a.sql
+    mysql -h ${DB_ENDPOINTS[$i]} -u root --password=PASSWORD < ./sql_script/b.sql
     ((i=i+1))
 done
 
