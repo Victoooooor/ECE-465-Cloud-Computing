@@ -3,6 +3,8 @@ Cooper Union ECE-465 Spring 2021
 
 ## P2P FileSystem Overview
 
+![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/frontend/archetecture.png?raw=true)
+
 - Peer-to-Peer (P2P) Systems have been the goto solution for maintaining internet freedom, it is also a popular distributed architecture for partition tasks and workloads between devices.
 
 - p2p network has a wide variety of use cases including protocols like Napster and Spotify peer to peer music streaming service. Napster uses the p2p architecture to create a network of shared disk storage and is used for file sharing, and Spotify uses their client side p2p network for music streaming to offload significant amount of workload from their central server. Their evaluation of the p2p layer is published here https://ieeexplore.ieee.org/document/5569963 .
