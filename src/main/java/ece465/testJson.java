@@ -1,7 +1,7 @@
 package ece465;
 
 import ece465.service.Json.readJson;
-import ece465.service.Json.retrieveJsonWriter;
+import ece465.service.Json.searchJsonWriter;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class testJson {
     public static void main(String[] args) {
 
-        retrieveJsonWriter s = new retrieveJsonWriter();
+        searchJsonWriter s = new searchJsonWriter();
         String json = s.generateJson("hi");
         System.out.println(json);
         readJson.read(json);

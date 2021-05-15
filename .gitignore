@@ -30,8 +30,16 @@ hs_err_pid*
 target
 
 # ignore temp
-temp
+*temp
 .idea
+logs
 dependency-reduced-pom.xml
 *.iml
 *.iml
+*.pdf
+
+.env
+saved_list.txt
+selfip.txt
+app.version
+ips.txt

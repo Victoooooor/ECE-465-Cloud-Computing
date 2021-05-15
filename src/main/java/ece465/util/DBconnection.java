@@ -40,7 +40,6 @@ public class DBconnection {
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             System.err.println("Set Max Packet Error.");
-            throwables.printStackTrace();
         }
 
     }

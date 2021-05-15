@@ -4,27 +4,54 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import ece465.handler.multi.getHash;
 import ece465.handler.single.retrieve;
 import ece465.service.Json.*;
+import ece465.service.threaded_store;
 import ece465.util.DBconnection;
 import ece465.util.fileInfo;
-
+import ece465.handler.single.fetch;
 public class server {
     private static ServerSocket server;
     private DBconnection DB_con;
     private retrieve RT;
     private ConcurrentLinkedQueue<fileInfo> result;
+    private ConcurrentLinkedQueue<String> requestID_queue;
     private getHash HAS;
+    private peerlist peers;
+    private String selfip;
+    private int selfport;
     public server(int portnum){
         try {
             server = new ServerSocket(portnum);
             DB_con = new DBconnection();
             RT = new retrieve(DB_con);
             HAS = new getHash(DB_con);
+            peers=new peerlist();
+            requestID_queue = new ConcurrentLinkedQueue<>();
         } catch (IOException e) {
             System.err.println("Server port non available: "+portnum);
+            e.printStackTrace();
+        }
+        File ff=new File("selfip.txt");
+        try(FileReader fr=new FileReader(ff); BufferedReader br=new BufferedReader(fr);){
+            StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
+            String line=br.readLine();
+            String[] lines=line.split(":");
+            selfip=lines[0];
+            if(lines.length>1){
+                selfport=Integer.parseInt(lines[1]);
+            }
+            else{
+                selfport=4567;
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -33,7 +60,6 @@ public class server {
         private Socket client;
         private DataInputStream in = null;
         private DataOutputStream out = null;
-
         public client_handler(Socket client){
             this.client=client;
         }
@@ -52,29 +78,94 @@ public class server {
                 String fromclient=in.readUTF();
                 System.out.println("From Client text: "+ fromclient);
                 ArrayList<readJson.returnInfo> read = readJson.read(fromclient);
-                readJson.returnInfo Info=read.get(0);
-                System.out.println(Info.action);
-                switch(Info.action){
-                    case 0:
-                        System.out.println("Search file");
-                        RT.startSearch(Info.filename,0);
-                        result=RT.getResult();
-                        System.out.println("Search Done");
-                        out.writeUTF(retrieveReturnJsonWriter.generateJson(HAS.get(result)));
-                        break;
-                    case 1:
-                        ;
-                        break;
-                    case 2:
-                        ;
-                        break;
-                    default:
-                        ;
-                        break;
+                allread:for(readJson.returnInfo Info:read) {
+                    System.out.println(Info.action);
+                    synchronized (requestID_queue){
+                        if(!requestID_queue.contains(Info.requestID)){
+                            System.err.println("Different Request");
+                            if(requestID_queue.size() < 128){
+                                requestID_queue.add(Info.requestID);
+                            } else{
+
+                                synchronized (requestID_queue) {
+                                    requestID_queue.poll();
+                                    requestID_queue.add(Info.requestID);
+                                }
+                            }
+                        }else {
+                            System.err.println("Same request, ignored!!!!!!");
+                            if (Info.action==0){
+                                System.err.println("Is search, return repeated");
+                                out.writeUTF("repeated");
+                                out.flush();
+                            }
+                            return;
+                        }
+                    }
+
+                    switch (Info.action) {
+                        case 0://search by filename
+                            System.out.println("Search file: " + Info.filename);
+                            try {
+                                RT.startSearch(Info.filename, 0);
+                                result = RT.getResult();
+                                System.out.println("Search Done");
+                                ArrayList<String> netresult=peers.broadcast(fromclient,0);
+                                ArrayList<readJson.returnInfo> fromnet=new ArrayList<>();
+                                if(netresult.size()>0) {
+                                    netresult.forEach(f -> {
+                                        fromnet.addAll(readJson.read(f));
+                                    });
+                                }
+                                String fromlocal=searchReturnJsonWriter.generateJson(HAS.get(result), selfip,selfport);
+                                fromnet.addAll(readJson.read(fromlocal));
+                                out.writeUTF(readJsonWriter.generateJson(fromnet));
+                                out.flush();
+                            } catch (Exception e) {
+                                System.err.println("Server Processing Search error");
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 1://only client
+                            ;
+                            break;
+                        case 2://fetch
+                            System.out.println("Fetching: ");
+                            fetch ft = new fetch(DB_con);
+                            ft.getfile(Info.fid, out);
+                            break;
+                        case 3://save to db
+                            threaded_store.store(DB_con, read, 0);
+                            out.writeUTF("Write to DB done");
+                            out.flush();
+                            break allread;
+                        case 4://broadcast message
+                            System.out.println("peers.nodelist.size() = "+peers.nodelist.size());
+                            peers.broadcastbk(fromclient, 0);
+                            if(peers.nodelist.size() < 32) {
+                                peers.register(read.get(0).ip, read.get(0).port);
+                                String message = returnMsgJsonWriter.generateJson(selfip,selfport);
+                                peers.returnMsg(read.get(0).ip, read.get(0).port,message);
+                            }
+                            break;
+                        case 5://return message
+                            if(peers.nodelist.size() < 8) {
+                                peers.register(read.get(0).ip, read.get(0).port);
+                            }else{
+                                String message = confirmationMsgJsonWriter.generateJson(selfip,selfport);
+                                peers.confirmationMsg(read.get(0).ip,read.get(0).port,message);
+                            }
+                            break;
+                        case 6://delete
+                            peers.delete(read.get(0).ip, read.get(0).port);
+                            break;
+                        default:
+                            ;
+                            break;
+                    }
+                    System.out.println("Done processing request");
                 }
-                System.out.println("Done reading");
-                out.writeUTF("this is server talking");
-                out.flush();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -103,7 +194,7 @@ public class server {
     }
     public void stop(){
         try {
-             server.close();
+            server.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
