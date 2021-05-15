@@ -3,7 +3,7 @@ Cooper Union ECE-465 Spring 2021
 
 ## P2P FileSystem Overview
 
-![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/architecture.png?raw=true)
+![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/images/architecture.png?raw=true)
 
 - Peer-to-Peer (P2P) Systems have been the goto solution for maintaining internet freedom, it is also a popular distributed architecture for partition tasks and workloads between devices.
 
@@ -17,7 +17,7 @@ Cooper Union ECE-465 Spring 2021
 
 - Since a shared network storage should not have access to the entire disk, MariaDB is chosen as local storage device, and accepts connection from local server using JDBC wrapped by Hikaricp connection pool.
 
-![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/ECE465_MVP4.png?raw=true)
+![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/images/ECE465_MVP4%20.png?raw=true)
 
    Shown above is a simple demostration of our distributed network. Each node server is connected to at least two other nodes, and a peer list of the nodes that it is connected to is maintained within each node.
 
@@ -69,7 +69,7 @@ Cooper Union ECE-465 Spring 2021
         ./ngrok tcp 4567        (on MacOS and Linux)
         ngrok.exe tcp 4567      (on Windows)
 
-  - Then you will see a similar window like this![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/ngrok.png?raw=true)
+  - Then you will see a similar window like this![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/images/ngrok.png?raw=true)
 
 
   - #### **Please copy the portion of forwarding URL in the format of**
