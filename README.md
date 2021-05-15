@@ -3,7 +3,7 @@ Cooper Union ECE-465 Spring 2021
 
 ## P2P FileSystem Overview
 
-![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/frontend/architecture.png?raw=true)
+![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/architecture.png?raw=true)
 
 - Peer-to-Peer (P2P) Systems have been the goto solution for maintaining internet freedom, it is also a popular distributed architecture for partition tasks and workloads between devices.
 
@@ -69,7 +69,7 @@ Cooper Union ECE-465 Spring 2021
         ./ngrok tcp 4567        (on MacOS and Linux)
         ngrok.exe tcp 4567      (on Windows)
 
-  - Then you will see a similar window like this![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/frontend/ngrok.png?raw=true)
+  - Then you will see a similar window like this![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/main/ngrok.png?raw=true)
 
 
   - #### **Please copy the portion of forwarding URL in the format of**
