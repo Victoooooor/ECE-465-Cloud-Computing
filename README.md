@@ -3,7 +3,7 @@ Cooper Union ECE-465 Spring 2021
 
 ## P2P FileSystem Overview
 
-![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/frontend/archetecture.png?raw=true)
+![alt text](https://github.com/Victoooooor/ECE-465-Cloud-Computing/blob/frontend/architecture.png?raw=true)
 
 - Peer-to-Peer (P2P) Systems have been the goto solution for maintaining internet freedom, it is also a popular distributed architecture for partition tasks and workloads between devices.
 
